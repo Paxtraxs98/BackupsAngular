@@ -1,0 +1,54 @@
+<div fxLayout="row wrap" style="background-color: rgb(238, 238, 238);height: 89vh;padding: 20px;"> 
+    <div fxFlex>        
+        <div fxLayout="row wrap" fxLayout.lt-sm="column"  fxLayoutAlign="center center"  *ngFor="let song of songs">
+            <div fxFlex="70" fxFlex.xs="100" class="titulos" *ngIf="song.songs!=''">
+                <div fxLayout="row">
+                    <div fxFlex class="settingtitulos">
+                        Cancion
+                    </div>
+                    <div fxFlex class="settingtitulos artista">
+                        Artista
+                    </div>
+                    <div fxFlex class="settingtitulos album">
+                        Album
+                    </div>                                       
+               </div>
+               <mat-divider></mat-divider>
+            </div>                 
+            <div fxFlex="70" *ngFor="let datosSong of song.songs" class="songs">                
+                <div fxLayout="row">
+                    <div fxFlex class="settingSong">
+                        <mat-list>
+                            <mat-list-item>                                            
+                                <mat-icon mat-list-icon (click)="start(datosSong)" matTooltip="Play" class="pushPlay">play_circle_filled</mat-icon>                
+                                <h4 mat-line>{{datosSong.name}}</h4>       
+                                <p mat-line>{{datosSong.duration}}</p> 
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                    <div fxFlex class="settingArtist artista">
+                        <mat-list>
+                            <mat-list-item>                                                         
+                                <img src="" src="{{url+'imageArtist/'+datosSong.album.artist.imagen}}" alt="">
+                                <p style="margin-left: 5px;" [routerLink]="['/artistDetall/',datosSong.album.artist._id]">{{datosSong.album.artist.name}}</p>  
+                            </mat-list-item>   
+                        </mat-list>
+                    </div>
+                    <div fxFlex class="settingAlbum album">
+                        <mat-list>
+                            <mat-list-item >                                                         
+                                <img src="" src="{{url+'imageAlbum/'+datosSong.album.imagen}}" alt="">
+                                <p style="margin-left: 5px;" [routerLink]="['/albumDetall/',datosSong.album._id]">{{datosSong.album.name}}</p>  
+                            </mat-list-item>   
+                        </mat-list>
+                    </div>                                       
+                </div>   
+                <mat-divider></mat-divider>      
+           </div> 
+           <div fxFlex="70" *ngIf="song.songs==''" style="text-align: center;">
+            <mat-card>
+                <p class="mat-display-3" style="color: rgba(0,0,0,.6);"> No Hay Favoritos</p>
+            </mat-card>
+        </div>                                
+        </div>
+  </div>

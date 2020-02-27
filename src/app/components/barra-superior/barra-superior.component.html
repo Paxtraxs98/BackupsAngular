@@ -1,0 +1,63 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>    
+    <div fxFlex>
+      <div fxLayout="row"fxLayoutAlign="center center">
+        <div fxFlex  class="menu">
+          <button mat-raised-button color="primary"  (click)="openMenu()" id="btnOpen">
+            <mat-icon>menu</mat-icon>
+          </button>                 
+          <button mat-raised-button color="primary"  (click)="closeMenu()" id="btnClose">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+        <div fxFlex class="logo">
+          <img src="../../../assets/imag/logoMusify.png" alt="">
+        </div>
+        <div fxFlex>
+          <audio controls id="player">        
+            <source id="mp3-sources" src="{{url+'getFileSong/'+song.file}}" type="audio/mp3">
+          </audio> 
+        </div>
+        <div fxFlex class="exit">
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Salir</span>
+            </button>    
+          </mat-menu>
+        </div>    
+      </div>
+  </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<!-- <div>      
+  
+<div fxFlex  class="menu">
+          <i class="material-icons">
+            menu
+          </i>
+        </div>
+        <div fxFlex  class="logo">
+          <img src="../../../assets/imag/logoMusify.png" alt="">
+        </div>
+        <div fxFlex class="reproductor" *ngIf="identity">
+          <audio controls id="player">        
+            <source id="mp3-sources" src="{{url+'getFileSong/'+song.file}}" type="audio/mp3">
+          </audio> 
+        </div>
+        <div fxFlex class="exit" *ngIf="identity">             
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Salir</span>
+            </button>    
+          </mat-menu>
+        </div>
+</div> -->

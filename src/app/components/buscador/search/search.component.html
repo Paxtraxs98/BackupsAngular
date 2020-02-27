@@ -1,0 +1,76 @@
+<div fxLayout="row" class="contendor_Buscador">
+    <div fxFlex>
+        <div fxLayout="row" fxLayoutAlign="center start" style="background-color: white;padding: 20px;">
+            <div fxFlex="70">
+                <mat-form-field >
+                    <mat-label>Buscar:Cancion,Album,Artista...</mat-label>
+                    <input matInput (keyup)="applyFilter($event)">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column"  fxLayoutAlign="center start" style="background-color: white;" *ngIf="songs && albums && artists">
+            <div fxFlex>      
+                <mat-card *ngIf="songs!=''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Canciones</h3>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center start" *ngFor="let song of songs" class="contenido" (click)="start(song)" matTooltipPosition="left" matTooltip="Reproducir">
+                        <div fxFlex style="text-align: center;">
+                            <img src="../../../../assets/imag/iconoPlay.png" alt="icono musica" width="100px" style="cursor: pointer;">
+                        </div>
+                        <div fxFlex style="align-items: center;">
+                            <p>{{song.name}}</p>
+                            <p>{{song.duration}}</p>
+                        </div>                                                  
+                    </div>                  
+                </mat-card>                                                      
+                <mat-card *ngIf="songs==''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Sin Canciones</h3>
+                    </div>                                   
+                </mat-card>  
+            </div>
+            <div fxFlex>
+                <mat-card *ngIf="artists!=''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Artistas</h3>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center start" *ngFor="let artist of artists" class="contenido" [routerLink]="['/artistDetall/',artist._id]" matTooltipPosition="left" matTooltip="Ver Artista">
+                        <div fxFlex style="text-align: center;">
+                            <img src="{{url+'imageArtist/'+artist.imagen}}" alt="..." width="100px" height="100px" style="border-radius: 50%;"> 
+                        </div>
+                        <div fxFlex style="align-items: center;">
+                            <p>{{artist.name}}</p>                                    
+                        </div>                        
+                    </div>                              
+                </mat-card>
+                <mat-card *ngIf="artists==''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Sin Artistas</h3>
+                    </div>                                                 
+                </mat-card>
+            </div>
+            <div fxFlex>
+                <mat-card *ngIf="albums!=''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Albumes</h3>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="center start" *ngFor="let album of albums" class="contenido" [routerLink]="['/albumDetall/',album._id]" matTooltipPosition="left" matTooltip="Ver Album">
+                        <div fxFlex style="text-align: center;">
+                            <img src="{{url+'imageAlbum/'+album.imagen}}" alt="..." width="100px" height="100px" style="border-radius: 50%;"> 
+                        </div>
+                        <div fxFlex style="align-items: center;">
+                            <p>{{album.name}}</p>                                    
+                        </div>
+                    </div>                              
+                </mat-card>
+                <mat-card *ngIf="albums==''">
+                    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx">
+                        <h3>Sin Albumes</h3>
+                    </div>                                                 
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

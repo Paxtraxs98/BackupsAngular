@@ -1,0 +1,35 @@
+.playlist
+{    
+    height: 89vh;   
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+}
+.tablaPlayList
+{
+    height:400px;
+    overflow: auto;
+}
+.tablaPlayList table
+{
+    width: 100%;
+    font-size: 40px;
+}
+.tablaPlayList table th
+{
+    font-size:18px;
+    text-align: center;
+}
+.tablaPlayList table td
+{
+    font-size:18px;
+    text-align: center;
+}
+.nameplayList:hover
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+mat-icon{
+    color:rgba(0, 0, 0,.6);        
+
+}

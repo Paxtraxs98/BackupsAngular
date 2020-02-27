@@ -1,0 +1,46 @@
+mat-toolbar
+{
+    height: 10vh;    
+}
+.logo{
+    text-align: left;    
+}
+.logo img{
+    width:80px
+}
+audio{
+    width: 100%;        
+}
+.exit
+{    
+    text-align: right;
+}
+.menu{
+    display: none;        
+}
+.menu i{
+    font-size: 30px;
+}
+
+#btnClose{
+    display: none;
+}
+#btnOpen{
+    display: none;
+}
+@media (max-width: 600px) {
+    .logo{
+        display: none;
+    }
+    .menu{
+        display: block;
+    }
+    #btnOpen{
+        display: block;
+    }    
+    
+  }
+  
+  
+
+  

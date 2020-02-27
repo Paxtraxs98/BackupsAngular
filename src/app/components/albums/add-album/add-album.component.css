@@ -1,0 +1,18 @@
+mat-form-field
+{
+    width: 100%;;
+}
+#img-upload
+{
+    display: none;
+}
+.btn-upload label img
+{
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+.btn-upload label img:hover
+{
+    cursor: pointer;
+    background-color: rgba(0,0,0,.1);  
+}

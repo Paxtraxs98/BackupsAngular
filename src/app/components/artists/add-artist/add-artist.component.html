@@ -1,0 +1,42 @@
+  <div style="justify-content: center; text-align: center;">
+    <h1 mat-dialog-title *ngIf="data.dialog=='add'">Agregar Genero</h1>
+    <h1 mat-dialog-title *ngIf="data.dialog=='editar'">Editar Genero</h1>
+    <div mat-dialog-content style="height: auto">  
+      <form action=""  [formGroup]="FormArtist">
+        <div fxLayout="row">
+            <div fxFlex>
+              <mat-form-field>
+                <mat-label>Nombre del artista</mat-label>
+                <input matInput formControlName="name">
+              </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" >
+          <div fxFlex>
+            <mat-form-field>
+              <mat-label>Genero del artista</mat-label>
+              <input matInput formControlName="genero">
+            </mat-form-field> 
+          </div>
+        </div> 
+        <div fxLayout="row" fxLayoutAlign="center center" >
+          <div fxFlex>
+              <div class="btn-upload">
+                  <label for="img-upload">              
+                    <img src="../../../../assets/imag/addImage.png" alt="addSong" width="70px" matTooltip="Agregar Imagen">                                
+                  </label>
+                  <input type="file" id="img-upload" (change)="fileChangeEvent($event)">                     
+              </div>
+          </div>
+          <div fxFlex *ngIf="filesToUpload">
+              <p *ngFor="let file of filesToUpload"> {{file.name}}</p>
+          </div>          
+        </div>
+      </form>
+    </div>
+    <div mat-dialog-actions style="justify-content: center;">
+      <button mat-button (click)="onNoClick()">Cerrar</button>
+      <button mat-button  color="warn" (click)="addArtist(FormArtist.value)" [mat-dialog-close]="FormArtist.value" [disabled]="FormArtist.invalid"  *ngIf="data.dialog=='add'">Agregar</button>
+      <button mat-button  color="warn" (click)="editArtist(FormArtist.value)" [mat-dialog-close]="FormArtist.value" [disabled]="FormArtist.invalid"  *ngIf="data.dialog=='editar'">Modificar</button>
+    </div>
+  </div>

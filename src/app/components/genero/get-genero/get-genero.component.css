@@ -1,0 +1,35 @@
+.generos
+{    
+    height: 89vh;   
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+}
+.tablaGeneros
+{
+    height:400px;
+    overflow: auto;
+}
+.tablaGeneros table
+{
+    width: 100%;
+    font-size: 40px;
+}
+.tablaGeneros table th
+{
+    font-size:18px;
+    text-align: center;
+}
+.tablaGeneros table td
+{
+    font-size:18px;
+}
+.nameGenero:hover
+{
+    cursor: pointer;
+    text-decoration: underline;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+

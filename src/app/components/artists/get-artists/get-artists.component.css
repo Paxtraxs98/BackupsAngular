@@ -1,0 +1,51 @@
+.contedor-artistas{
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    height: 89vh;
+}
+.contenedorArtist
+{
+    margin-top: 10px;    
+}
+.contenedorArtist .artista
+{
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    margin: 10px;;
+    overflow: hidden;
+}
+.contenedorArtist .artista .imgArtist img
+{
+    border-radius: 50%;;
+}
+.contenedorArtist .artista .nameArtist
+{
+    text-align: center;
+    padding: 10px;;
+}
+.contenedorArtist .artista .nameArtist a{
+    font-weight: bold;
+    font-size: 18px;
+    color:rgba(0,0,0,.5);
+    letter-spacing: 1px;
+}
+.opciones
+{
+    text-align: center;
+}
+.opciones mat-icon
+{
+    color:rgba(0,0,0,.5);
+}
+.btn-next-prev i
+{
+    color: #f7550e;
+}
+
+@media (max-width: 600px) {
+    .contedor-artistas{
+        height: auto;
+    }
+  }
+  
+  

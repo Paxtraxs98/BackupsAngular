@@ -1,0 +1,43 @@
+.cont-login-register {        
+    height: 100vh;                
+    /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
+    background-image: url(../../../assets/imag/banner-p.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }   
+  mat-form-field
+  {
+    width: 80%;
+    display: block;
+    margin: 20px auto 0px auto;
+  }
+  mat-card-content 
+  {
+    text-align: center;
+    margin-top: 20px;
+  }
+  mat-hint
+  {
+    text-align: left;
+    width: 80%;
+    display: block;
+    margin: auto;
+  }
+  .spinner
+  {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  /* .menu-lateral
+  {
+    background-color: rgb(242, 242, 242);
+    height: 90vh;        
+  } */
+
+  
+  .espacio {
+    flex: 1 1 auto;
+  }
+  

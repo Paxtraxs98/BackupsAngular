@@ -1,0 +1,17 @@
+<div style="justify-content: center; text-align: center;">
+    <h1 mat-dialog-title *ngIf="data.dialog=='add'">Agregar PlayList</h1>
+    <h1 mat-dialog-title *ngIf="data.dialog=='edit'">Editar PlayList</h1>
+    <div mat-dialog-content style="height: auto">  
+      <form action=""  [formGroup]="FormplayList">    
+        <mat-form-field>
+            <mat-label>Nombre del artista</mat-label>
+            <input matInput formControlName="namePlayList">
+        </mat-form-field>                        
+      </form>
+    </div>
+    <div mat-dialog-actions style="justify-content: center;">
+      <button mat-button (click)="onNoClick()">Cerrar</button>
+      <button mat-button  color="warn" (click)="addPlayList(FormplayList.value)" [mat-dialog-close]="FormplayList.value" [disabled]="FormplayList.invalid"  *ngIf="data.dialog=='add'">Agregar</button>
+      <button mat-button  color="warn" (click)="editPlayList(FormplayList.value)" [mat-dialog-close]="FormplayList.value" [disabled]="FormplayList.invalid"  *ngIf="data.dialog=='edit'">Modificar</button>
+    </div>
+  </div>

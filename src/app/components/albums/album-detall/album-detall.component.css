@@ -1,0 +1,27 @@
+.avatarArtist img
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;;
+}
+.imgAlbum
+{
+    text-align: center;
+}
+
+.cancionesAlbum
+{
+    height: 350px;
+}
+.canciones:hover
+{
+    background-color: rgba(0, 0,0, .1);
+}
+.optionAdmin mat-icon
+{
+    color:rgba(0, 0,0, .7)
+}
+.pushPlay
+{
+    cursor: pointer;
+}

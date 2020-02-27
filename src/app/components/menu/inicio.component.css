@@ -1,0 +1,32 @@
+.menu-lateral
+{    
+  background-color: rgb(249, 249, 249);  
+  padding: 10px;
+  height: 89vh;  
+}
+ mat-nav-list 
+  {    
+    height: auto;
+    width: 100%;        
+  }  
+  mat-nav-list span{
+    color:rgba(0, 0, 0,.6);        
+    font-family: 'Montserrat', sans-serif;
+  }
+  mat-nav-list mat-icon
+  {
+    color:rgba(0, 0, 0,.6);        
+  }  
+
+
+  @media (max-width: 600px) {
+    /* .menu-lateral
+    {  
+      background-color: RED;  
+  
+    } */
+  }
+  
+  
+
+  

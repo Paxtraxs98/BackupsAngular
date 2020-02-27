@@ -1,0 +1,51 @@
+
+        <div fxLayout="row" class="generos" >
+            <div fxFlex>
+                <div fxLayout="row wrap"  fxLayoutAlign="end center" *ngIf="identity.role=='ROLE_ADMIN'">        
+                    <button mat-flat-button color="primary" (click)="openDialogAdd()">
+                        Agregar Genero
+                    </button>                        
+                </div>                                               
+                <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 20px;" >                  
+                    <div fxFlex="70"  class="tablaGeneros" *ngIf="generos!=''">
+                        <table mat-table [dataSource]="generos" class="mat-elevation-z8" >
+                            <ng-container matColumnDef="name">
+                              <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                              <td mat-cell *matCellDef="let element" class="nameGenero" matTooltip="Ver Canciones" (click)="openDialogSongs(element._id)"> {{element.name}} </td>
+                            </ng-container>                          
+                            
+                            <ng-container matColumnDef="description">
+                              <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+                              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                            </ng-container>
+                            <ng-container matColumnDef="actions" *ngIf="identity.role=='ROLE_ADMIN'">
+                              <th mat-header-cell *matHeaderCellDef style="width: 30px;"> Acciones </th>
+                              <td mat-cell *matCellDef="let element">
+                                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                    <mat-icon>more_vert</mat-icon>
+                                  </button>
+                                  <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="deleteGenero(element._id)">                                        
+                                      <mat-icon>delete</mat-icon>
+                                      <span>Eliminar</span>
+                                    </button>
+                                    <button mat-menu-item (click)="openDialogEdit(element._id)">
+                                      <mat-icon>edit</mat-icon>
+                                      <span>Editar</span>
+                                    </button>                                    
+                                  </mat-menu>                                                                   
+                              </td>
+                            </ng-container>                 
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>    
+                    </div>
+                    <div fxFlex="70" *ngIf="generos==''" style="text-align: center;">
+                        <mat-card>
+                            <p class="mat-display-3" style="color: rgba(0,0,0,.6);"> No existen Generos</p>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>        
+     

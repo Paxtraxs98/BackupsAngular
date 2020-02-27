@@ -1,0 +1,47 @@
+<div fxLayout="row wrap" >
+    <div fxFlex class="menu-lateral" >          
+          <div fxLayout="row" >
+            <mat-nav-list>                            
+                <mat-list>                
+                  <mat-list-item [routerLink]="['/dashboard']" [routerLinkActive]="['actived']">                        
+                    <mat-icon mat-list-icon>home</mat-icon>
+                    <span mat-line>Inicio</span>                        
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/update-user']" [routerLinkActive]="['actived']">                        
+                            <mat-icon mat-list-icon>person</mat-icon>
+                            <span mat-line>Perfil</span>                        
+                    </mat-list-item>           
+                    <mat-divider></mat-divider>     
+                    <mat-list-item [routerLink]="['/Search']" routerLinkActive="router-link-active" >
+                        <mat-icon mat-list-icon>search</mat-icon>
+                        <span mat-line>Buscar</span>
+                    </mat-list-item>                 
+                    <mat-divider></mat-divider>
+                    <mat-list-item [routerLink]="['/getAlbums']" [routerLinkActive]="['actived']">
+                        <mat-icon mat-list-icon>disc_full</mat-icon>
+                        <span mat-line>Albumes</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>                
+                    <mat-list-item [routerLink]="['/Artists/1']" [routerLinkActive]="['actived']">
+                        <mat-icon mat-list-icon>people_alt</mat-icon>
+                        <span mat-line>Artistas</span>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                    <mat-list-item *ngIf="identity.role=='ROLE_USER'" [routerLink]="['/favoritos/',identity._id]" [routerLinkActive]="['actived']">
+                        <mat-icon mat-list-icon>star</mat-icon>
+                        <span mat-line>Favoritos</span>
+                    </mat-list-item>                 
+                    <mat-list-item [routerLink]="['/generos']" [routerLinkActive]="['actived']">
+                        <mat-icon mat-list-icon>library_music</mat-icon>
+                        <span mat-line>Generos</span>
+                    </mat-list-item>                 
+                    <mat-list-item *ngIf="identity.role=='ROLE_USER'" [routerLink]="['/playlist/',identity._id]" [routerLinkActive]="['actived']">
+                        <mat-icon mat-list-icon>queue_music</mat-icon>
+                        <span mat-line>PlayList</span>
+                    </mat-list-item>                 
+                </mat-list>
+              </mat-nav-list>
+        </div>       
+    </div>
+</div>
+

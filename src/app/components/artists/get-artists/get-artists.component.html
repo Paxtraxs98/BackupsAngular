@@ -1,0 +1,52 @@
+        <div fxLayout="row wrap"  class="contedor-artistas" >           
+           <div fxFlex>
+                <div fxLayout="row wrap" fxLayoutAlign="end center" *ngIf="identity && identity.role=='ROLE_ADMIN'">        
+                        <button mat-flat-button color="primary" (click)="openDialogAdd()">
+                            Agregar Artista
+                        </button>                        
+                </div>  
+                <div fxLayout="row" class="btn-next-prev" *ngIf="artists!=''">
+                    <div fxFlex>                       
+                            <i class="material-icons" style="font-size: 40px; cursor: pointer;" [routerLink]="['/Artists',prev_page]">arrow_left</i>
+                            <i class="material-icons" style="font-size: 40px; cursor: pointer;" [routerLink]="['/Artists',next_page]">arrow_right</i>          
+                    </div>
+                </div> 
+                <div fxLayout="row" fxLayout.lt-sm="column"  class="contenedorArtist">                  
+                        <div fxFlex="22" fxFlex.xs="90" class="artista" *ngFor="let artist of artists">              
+                                <div style="text-align: center;" class="imgArtist" *ngIf="artist.imagen=='null'">                 
+                                    <img src="../../../../assets/imag/no-perfil.png" alt="..." width="100%" height="200px"> 
+                                </div>
+                                <div style="text-align: center;" class="imgArtist" *ngIf="artist.imagen!='null'">                 
+                                    <img src="{{url+'imageArtist/'+artist.imagen}}" alt="..." width="100%" height="250px"> 
+                                </div>
+                                <div class="nameArtist">
+                                    <a>{{artist.name}}</a>
+                                </div>                                             
+                                <div class="opciones">
+                                    <div *ngIf="identity.role=='ROLE_ADMIN'">
+                                        <button mat-icon-button (click)="openDialogEdit(artist._id)" matTooltip="Editar">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                        <button mat-icon-button  (click)="deleteArtist(artist._id)"
+                                        matTooltip="Eliminar">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                        <button mat-icon-button matTooltip="Ver" [routerLink]="['/artistDetall',artist._id]">                        <mat-icon>remove_red_eye</mat-icon>
+                                        </button>
+                                    </div>
+                                    <div *ngIf="identity.role=='ROLE_USER'">                       
+                                        <button mat-icon-button matTooltip="Ver" [routerLink]="['/artistDetall',artist._id]">                        <mat-icon>remove_red_eye</mat-icon>
+                                        </button>
+                                      </div>
+                                </div>                                                            
+                        </div>              
+                </div>   
+                <div fxLayout="row" fxLayoutAlign="center center" *ngIf="artists==''">
+                    <div fxFlex  style="text-align: center;">
+                        <mat-card>
+                            <p class="mat-display-3" style="color: rgba(0,0,0,.6);"> No existen Artistas</p>
+                        </mat-card>
+                    </div>
+                </div>
+           </div>
+        </div>

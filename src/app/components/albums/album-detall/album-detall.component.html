@@ -1,0 +1,83 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="padding: 30px;background-color: rgb(238, 238, 238);height: 89vh;">           
+    <div fxFlex>                
+         <div fxLayout="row" fxLayoutAlign="end start" fxLayoutAlign.lt-sm="center center" *ngIf="identity.role=='ROLE_ADMIN'" style="padding: 10px;">
+              <button mat-flat-button color="primary" (click)="openDialogAdd()">
+                   Agregar Cancion
+              </button>  
+          </div>                
+          <div fxLayout="row wrap" fxLayoutAlign="space-evenly  center" >
+             <div fxFlex="30" fxFlex.xs="90" *ngIf="album">
+                 <mat-card class="albumSelect">
+                     <mat-card-header style="height: 60px;">
+                       <div mat-card-avatar class="avatarArtist">
+                             <img src="{{url+'imageArtist/'+album.artist.imagen}}" alt="banner">
+                       </div>
+                       <mat-card-title>
+                           {{album.artist.name}}
+                       </mat-card-title>                             
+                     </mat-card-header>                                
+                     <mat-card-content class="imgAlbum">
+                         <img mat-card-image src="{{url+'imageAlbum/'+album.imagen}}" alt="Img Album Select">
+                     </mat-card-content> 
+                   </mat-card>                         
+             </div>
+             <div fxFlex="35" fxFlex.xs="90">
+                 <mat-card class="cancionesAlbum">
+                     <mat-card-header >                                                            
+                         <mat-card-title>
+                             Canciones
+                         </mat-card-title>                                   
+                     </mat-card-header>                                
+                     <mat-card-content  style="margin-top: 10px;">
+                         <mat-list *ngFor="let song of songs">  
+                            <div fxLayout="row" class="canciones">
+                                 <div fxFlex="60">
+                                     <mat-list-item >                                            
+                                         <mat-icon mat-list-icon (click)="start(song.song)" matTooltip="Play" class="pushPlay">play_circle_filled</mat-icon>                                            
+                                         <h4 mat-line>{{song.song.name}}</h4>
+                                         <p mat-line> {{song.song.duration}}</p>
+                                     </mat-list-item>
+                                 </div>
+                                 <div fxFlex="20" class="optionAdmin" *ngIf="identity.role=='ROLE_ADMIN'">
+                                     <mat-list-item >
+                                         <mat-icon mat-list-icon  matTooltip="Editar" (click)="openDialogEdit(song.song._id)">edit</mat-icon>                                            
+                                         <mat-icon mat-list-icon  matTooltip="Eliminar" (click)="deleteSong(song.song._id)">delete</mat-icon>                                            
+                                     </mat-list-item>
+                                 </div>
+                                 <div fxFlex="10" *ngIf="identity.role=='ROLE_USER'">
+                                     <mat-list-item >
+                                         <mat-icon mat-list-icon *ngIf="song.status!=''" (click)="removeFavoritos(song.song._id)"  matTooltip="Quitar de Favoritos" style="cursor: pointer;">favorite</mat-icon>                                            
+                                         <mat-icon mat-list-icon *ngIf="song.status==''" (click)="addFavoritos(song.song._id)"  matTooltip="Añadir a Favoritos" style="cursor: pointer;">favorite_border</mat-icon>                                            
+                                     </mat-list-item>
+                                 </div>                                                                        
+                                 <div fxFlex="10" *ngIf="identity.role=='ROLE_USER'">
+                                     <mat-list-item >                                   
+                                         <button mat-button [matMenuTriggerFor]="menu"  matTooltip="Listas de Reproduccion">
+                                             <mat-icon mat-list-icon >
+                                                 playlist_add
+                                             </mat-icon>         
+                                         </button>
+                                         <mat-menu #menu="matMenu">
+                                            <button mat-menu-item  matTooltip="Agregar" *ngFor="let playList of playLists" (click)="addSongPlayList(playList._id,song.song._id)">
+                                                 {{playList.namePlayList}}
+                                            </button>
+                                            <button mat-menu-item (click)="openDialogCreate()">
+                                                Crear PlayList
+                                           </button>                                         
+                                         </mat-menu>
+                                     </mat-list-item>
+                                 </div>                                        
+                                 <mat-divider></mat-divider>
+                             </div>                                    
+                         </mat-list>                                  
+                     </mat-card-content> 
+                   </mat-card>  
+             </div>
+             <!-- <div fxFlex="35"  style="text-align: center;" *ngIf="!song">
+                <mat-card>
+                    <p class="mat-display-2" style="color: rgba(0,0,0,.6);"> Sin Canciones</p>
+                </mat-card>
+            </div> -->
+          </div>
+    </div>
+ </div>

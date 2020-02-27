@@ -1,0 +1,48 @@
+  <div style="justify-content: center; text-align: center;">
+    <h1 mat-dialog-title *ngIf="data.dialog=='add'">Agregar Album</h1>
+    <h1 mat-dialog-title *ngIf="data.dialog=='editar'">Editar Album</h1>
+    <div mat-dialog-content style="height: auto;">  
+      <form action=""  [formGroup]="FormAlbum">
+        <div fxLayout="row">
+            <div fxFlex>
+                <mat-form-field>
+                    <mat-label>Nombre del album</mat-label>
+                    <input matInput formControlName="name">
+                  </mat-form-field>                  
+            </div>
+            <div fxFlex style="padding-left: 3px;">
+                <mat-form-field>
+                    <mat-label>Año</mat-label>
+                    <input type="number" matInput formControlName="ano">
+                  </mat-form-field>  
+            </div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>
+                <mat-form-field>
+                    <mat-label>Descripcion</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                  </mat-form-field>  
+            </div>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center" >
+          <div fxFlex>
+              <div class="btn-upload">
+                  <label for="img-upload">              
+                    <img src="../../../../assets/imag/addImage.png" alt="addSong" width="70px" matTooltip="Agregar Imagen">                                
+                  </label>
+                  <input type="file" id="img-upload" (change)="fileChangeEvent($event)">                     
+              </div>
+          </div>
+          <div fxFlex>
+              <p *ngFor="let file of filesToUpload"> {{file.name}}</p>
+          </div>
+      </div>
+      </form>
+    </div>
+    <div mat-dialog-actions style="justify-content: center;">
+      <button mat-button (click)="onNoClick()">Cerrar</button>
+      <button mat-button  color="warn" (click)="addAlbum(FormAlbum.value)" [mat-dialog-close]="FormAlbum.value" [disabled]="FormAlbum.invalid"  *ngIf="data.dialog=='add'">Agregar</button>
+      <button mat-button  color="warn" (click)="editAlbum(FormAlbum.value)" [mat-dialog-close]="FormAlbum.value" [disabled]="FormAlbum.invalid"  *ngIf="data.dialog=='editar'">Modificar</button>
+    </div>
+  </div>

@@ -1,0 +1,38 @@
+.albumes
+{
+    height: 89vh;
+    overflow-y: scroll;
+    padding: 20px;    
+    background-color: rgb(238, 238, 238);
+}
+.title{
+    font-size: 45px;
+}
+.imgAlbum img{
+    height:200px; 
+    width:200px;
+    border-radius:10px;
+}
+.titleAlbum
+{
+    font-size: 25px;
+    color:rgba(0,0,0,.8)
+}
+.descriptionAlbum
+{
+    text-align: justify;
+    font-size: 15px;
+    color: rgba(0,0,0,.8);
+}
+.optionAdmin mat-icon
+{
+    margin-right: 5px;
+    cursor: pointer;
+    color: rgba(0,0,0,.8);
+}
+.optionUser mat-icon
+{
+    margin-right: 5px;
+    cursor: pointer;
+    color: rgba(0,0,0,.8);
+}

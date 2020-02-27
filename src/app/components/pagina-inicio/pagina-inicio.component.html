@@ -1,0 +1,25 @@
+<div fxLayout="row" *ngIf="identity" class="contenedor_inicio">     
+    <div fxFlex >                
+        <div fxLayout="row wrap"  fxLayout.lt-sm="column"  fxLayoutAlign="start end" fxLayoutAlign.lt-sm="center center" class="portada">
+            <div fxFlex="20" fxFlex.xs="80" class="img-perfil">
+                <img src="{{url + 'imageUser/' + identity.imagen}}" alt="perfil"  id="identity_image">
+            </div>
+            <div fxFlex="30" fxFlex.xs="90" class="namePerfil">
+                <p>{{this.identity.name}}</p>
+            </div>
+            <div fxFlex class="actions">
+                <button  mat-raised-button color="primary" [routerLink]="['/update-user']" >Actualizar Informacion</button>
+            </div>
+        </div>
+        <div fxLayout="row">
+            <div fxFlex>
+                
+            </div>
+        </div>
+    </div>    
+</div> 
+<div fxLayout="row" fxLayout.lt-sm="column" *ngIf="!identity"> 
+    <div fxFlex ="20"fxFlex.md="20" fxFlex.sm="40" fxFlex.xs="100" class="menu-lateral">
+        Inicia sesion
+    </div>   
+</div> 

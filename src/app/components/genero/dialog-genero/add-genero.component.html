@@ -1,0 +1,34 @@
+<div style="justify-content: center; text-align: center;" *ngIf="data.dialog!='songs'">
+  <h1 mat-dialog-title *ngIf="data.dialog=='add'">Agregar Genero</h1>
+  <h1 mat-dialog-title *ngIf="data.dialog=='editar'">Editar Genero</h1>
+  <div mat-dialog-content>  
+    <form action=""  [formGroup]="FormGenero">
+      <mat-form-field>
+        <mat-label>Nombre del genero</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descripcion del genero</mat-label>
+        <input matInput formControlName="description">
+      </mat-form-field>  
+    </form>
+  </div>
+  <div mat-dialog-actions style="justify-content: center;">
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+    <button mat-button  color="warn" [mat-dialog-close]="FormGenero.value" [disabled]="FormGenero.invalid"  *ngIf="data.dialog=='add'">Agregar</button>
+    <button mat-button  color="warn" [mat-dialog-close]="FormGenero.value" [disabled]="FormGenero.invalid"  *ngIf="data.dialog=='editar'">Modificar</button>
+  </div>
+</div>
+<div style="justify-content: center;" *ngIf="data.dialog=='songs'">
+  <mat-list>
+    <h3 mat-subheader>Canciones</h3>
+    <mat-list-item *ngFor="let song of songs">
+      <mat-icon mat-list-icon (click)="start(song)" matTooltip="Play" class="pushPlay">play_circle_filled</mat-icon>
+      <h4 mat-line>{{song.name}}</h4>
+      <p mat-line> {{song.duration}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>    
+  </mat-list>
+  
+</div>
+

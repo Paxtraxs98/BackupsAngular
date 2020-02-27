@@ -1,0 +1,42 @@
+.songs
+{
+    background-color: white;
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
+}
+.titulos
+{
+    background-color: white;
+    
+}
+.titulos .settingtitulos
+{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px;
+}
+.songs .settingArtist img,.songs .settingAlbum img
+{
+    width:50px; 
+    height:50px;
+    margin-top: 16px;
+}
+.songs .settingArtist p,.songs .settingAlbum p
+{
+    margin-top: 30px;    
+}
+.songs .settingArtist p:hover,.songs .settingAlbum p:hover
+{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pushPlay
+{
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .artista,.album{
+        display: none;
+    }
+    
+  }

@@ -1,0 +1,45 @@
+<div fxLayout="row wrap" class="albumes">    
+    <div fxFlex>   
+        <div fxLayout="row wrap" fxLayout.lt-sm="column" >                 
+            <div fxFlex>                                             
+                <div fxLayout="row" style="margin-top: 30px;" fxLayoutAlign="center center">
+                    <div fxFlex *ngIf="albums!=''">                                                           
+                        <div fxLayout="row" fxLayout.xs="column"  >                                                        
+                            <div fxFlex="90">
+                                <mat-card *ngFor="let album of albums" style="margin-top: 20px;">
+                                    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+                                        <div fxFlex="30" style="text-align: center;"  class="imgAlbum">
+                                            <img src="{{url+'imageAlbum/'+album.imagen}}" alt="">
+                                        </div>
+                                        <div fxFlex >                                        
+                                            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
+                                                <p class="titleAlbum">{{album.name}}</p>             
+                                                <div class="optionAdmin" *ngIf="identity.role=='ROLE_ADMIN'">
+                                                    <mat-icon matTooltip="Editar" [routerLink]="['/editAlbum/',album._id]"  >edit</mat-icon>
+                                                    <mat-icon matTooltip="Eliminar" (click)="deleteAlbum(album._id)">delete</mat-icon>
+                                                    <mat-icon matTooltip="Ver" [routerLink]="['/albumDetall/',album._id]">remove_red_eye</mat-icon>           
+                                                </div>                                   
+                                                <div class="optionUser" *ngIf="identity.role=='ROLE_USER'">            
+                                                    <mat-icon matTooltip="Ver" [routerLink]="['/albumDetall/',album._id]">remove_red_eye</mat-icon>           
+                                                </div>
+                                            </div>
+                                            <div fxLayout="row">
+                                                 <div FxFlex>                                
+                                                    <p class="descriptionAlbum">{{album.description}}</p>                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                            </div>  
+                        </div>
+                    </div>                  
+                    <div fxFlex *ngIf="albums==''" style="text-align: center;">
+                        <mat-card>
+                            <p class="mat-display-3" style="color: rgba(0,0,0,.6);"> No existen Albumes</p>
+                        </mat-card>
+                    </div>
+                </div>
+           </div>                      
+        </div>
+  </div>
