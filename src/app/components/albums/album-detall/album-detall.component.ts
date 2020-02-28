@@ -20,13 +20,15 @@ import { AddPlayListComponent } from '../../playlists/add-play-list/add-play-lis
   providers:[AlbumService,ArtistService,SongService,UserService,FavoritosService]
 })
 export class AlbumDetallComponent implements OnInit {  
-  public album;  
+  public album;   
   public songs;
   public url;
   public token;
   public identity;
   public playLists;
   public name;
+  public repetidos=0;
+
   constructor(
     private _route:ActivatedRoute,    
     private _albumService:AlbumService,
@@ -128,7 +130,7 @@ export class AlbumDetallComponent implements OnInit {
     });
   }
   addFavoritos(idSong)
-  {
+  {    
     this._favoritosService.addFavorites(idSong).subscribe(
       (response:any)=>{
         this.getsongs();
@@ -139,30 +141,59 @@ export class AlbumDetallComponent implements OnInit {
   }
   addSongPlayList(idPlayList,idSong)
   {
-      this._playList.addSongPlayList(idPlayList,idSong).subscribe(
-        (response:any)=>{          
-          if(!response.saveplay)
-          {
-            Swal.fire({
-              icon: 'error',
-              title: 'Ouppss!!',
-              text: "Error al guardar cancion en la PlayList",
-              timer: 2000,
-            }); 
-          }
-          else
-          {
-            Swal.fire({
-              icon: 'success',
-              title: 'Peticion Exitosa',
-              text: response.message,
-              timer: 2000,
-            }); 
-          }
-        },error=>{
-          console.log(error);
+    this._playList.getPlayList(idPlayList).subscribe(
+      (response:any)=>{
+        let canciones=response.detallPlay[0].playlist;
+        for (const i in canciones) {                     
+            if(canciones[i]._id == idSong)
+            {
+              this.repetidos++;              
+            }            
         }
-      );
+        if(this.repetidos!=0)
+        {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ooupps',
+            text: 'Esta cancion ya esta en la PlayList',
+            timer: 2000,
+          }); 
+          this.repetidos=0;
+        }
+        else
+        {
+          this._playList.addSongPlayList(idPlayList,idSong).subscribe(
+            (response:any)=>{          
+              if(!response.saveplay)
+              {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ouppss!!',
+                  text: "Error al guardar cancion en la PlayList",
+                  timer: 2000,
+                }); 
+              }
+              else
+              {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Peticion Exitosa',
+                  text: response.message,
+                  timer: 2000,
+                }); 
+              }
+            },error=>{
+              console.log(error);
+            }
+          );
+          this.repetidos=0;
+        }
+        
+      },error=>{
+        console.log(error);
+      }
+    );
+      
   }
   removeFavoritos(idSong)
   {
@@ -209,7 +240,7 @@ export class AlbumDetallComponent implements OnInit {
   }
   start(song)
   {       
-      
+    console.log(song);
       let song_player = JSON.stringify(song);       
       let file_path = this.url + 'getFileSong/'+song.file;                    
       localStorage.setItem("sound-song",song_player);        

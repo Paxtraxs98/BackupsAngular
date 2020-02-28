@@ -28,11 +28,11 @@ export class AlbumService {
         {             
             return this._http.get(this.url+'getAlbum/'+idAlbum).pipe(map(res => res)); 
         }
-        getAlbums(idArtist,page)
+        getAlbums(idArtist)
         {              
-            if(idArtist && page)
+            if(idArtist)
             {
-                return this._http.get(this.url+'getAlbums/'+page+'/'+idArtist).pipe(map(res => res)); 
+                return this._http.get(this.url+'getAlbums/'+idArtist).pipe(map(res => res)); 
             }
             else
             {

@@ -46,24 +46,9 @@ export class ArtistDetallComponent implements OnInit {
     this.getAlbums();
   }
   getAlbums(){
-    this._route.params.forEach((params)=>{
-      let page=+params['page'];
+    this._route.params.forEach((params)=>{      
       let id=params['id'];     
-      if(!page)
-      {
-         page=1;
-      }
-      else
-      {
-          this.next_page=page+1;
-          this.prev_page=page-1;
-          if(this.prev_page==0)
-          {
-              this.prev_page=1;
-          }
-      }     
-
-      this._albumService.getAlbums(id,page).subscribe(
+      this._albumService.getAlbums(id).subscribe(
         (response:any)=>{
           if(!response.albums)
           {
@@ -173,6 +158,12 @@ export class ArtistDetallComponent implements OnInit {
       {
         this._albumService.deleteArtist(idAlbum).subscribe(
           (response:any)=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Peticion Exitosa',
+              text: response.message,
+              timer: 2000,
+            }); 
             this.getAlbums();
           }
           ,error=>{

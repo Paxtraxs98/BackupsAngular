@@ -81,7 +81,7 @@ export class GetArtistsComponent implements OnInit {
       data: {dialog:"add"}
     });
 
-    dialogRef.afterClosed().subscribe(result => {      
+    dialogRef.afterClosed().subscribe(result => {           
       this.getArtists();
     });
   }
@@ -122,7 +122,13 @@ export class GetArtistsComponent implements OnInit {
                 console.log("no tiene artistas");
             }
             else
-            {              
+            {         
+                Swal.fire({
+                icon: 'success',
+                title: 'Peticion Exitosa',
+                text: response.message,
+                timer: 2000,
+                });     
                 this.getArtists();      
             }
           },

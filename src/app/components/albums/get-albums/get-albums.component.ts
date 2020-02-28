@@ -34,7 +34,7 @@ export class GetAlbumsComponent implements OnInit {
   }
   getAlbums()
   {
-    this._albumService.getAlbums('','').subscribe(
+    this._albumService.getAlbums('').subscribe(
       (response:any)=>{
           this.albums=response.albums;          
       }
@@ -57,6 +57,12 @@ export class GetAlbumsComponent implements OnInit {
       {
         this._albumService.deleteArtist(idAlbum).subscribe(
           (response:any)=>{
+            Swal.fire({
+              icon: 'success',
+              title: 'Peticion Exitosa',
+              text: response.message,
+              timer: 2000,
+            }); 
             this.getAlbums();
           }
           ,error=>{

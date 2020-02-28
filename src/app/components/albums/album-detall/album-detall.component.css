@@ -12,6 +12,7 @@
 .cancionesAlbum
 {
     height: 350px;
+    overflow-y: scroll;
 }
 .canciones:hover
 {

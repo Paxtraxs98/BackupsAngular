@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
       palabra:new FormControl(''),      
     });        
   }
-  applyFilter(event: Event) {
+  applyFilter() {
     // const palabra = (event.target as HTMLInputElement).value;        
     this._buscadorService.search(this.FormFilter.value.palabra).subscribe(
       (response:any)=>{        

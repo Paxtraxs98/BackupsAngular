@@ -10,14 +10,16 @@
                  <mat-card class="albumSelect">
                      <mat-card-header style="height: 60px;">
                        <div mat-card-avatar class="avatarArtist">
-                             <img src="{{url+'imageArtist/'+album.artist.imagen}}" alt="banner">
+                             <img src="{{url+'imageArtist/'+album.artist.imagen}}" alt="banner" *ngIf="album.artist.imagen!='null'">
+                             <img src="../../../../assets/imag/no-album.png" alt="banner" *ngIf="album.artist.imagen=='null'">
                        </div>
                        <mat-card-title>
                            {{album.artist.name}}
                        </mat-card-title>                             
                      </mat-card-header>                                
                      <mat-card-content class="imgAlbum">
-                         <img mat-card-image src="{{url+'imageAlbum/'+album.imagen}}" alt="Img Album Select">
+                         <img mat-card-image src="{{url+'imageAlbum/'+album.imagen}}" alt="Img Album Select" *ngIf="album.imagen!='null'">
+                         <img src="../../../../assets/imag/no-album.png" alt="banner" *ngIf="album.imagen=='null'">
                      </mat-card-content> 
                    </mat-card>                         
              </div>

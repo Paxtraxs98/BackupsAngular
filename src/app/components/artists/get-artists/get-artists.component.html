@@ -14,7 +14,7 @@
                 <div fxLayout="row" fxLayout.lt-sm="column"  class="contenedorArtist">                  
                         <div fxFlex="22" fxFlex.xs="90" class="artista" *ngFor="let artist of artists">              
                                 <div style="text-align: center;" class="imgArtist" *ngIf="artist.imagen=='null'">                 
-                                    <img src="../../../../assets/imag/no-perfil.png" alt="..." width="100%" height="200px"> 
+                                    <img src="../../../../assets/imag/no-album.png" alt="..." width="100%" height="250px"> 
                                 </div>
                                 <div style="text-align: center;" class="imgArtist" *ngIf="artist.imagen!='null'">                 
                                     <img src="{{url+'imageArtist/'+artist.imagen}}" alt="..." width="100%" height="250px"> 
