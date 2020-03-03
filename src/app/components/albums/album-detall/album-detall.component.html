@@ -42,19 +42,27 @@
                                  </div>
                                  <div fxFlex="20" class="optionAdmin" *ngIf="identity.role=='ROLE_ADMIN'">
                                      <mat-list-item >
-                                         <mat-icon mat-list-icon  matTooltip="Editar" (click)="openDialogEdit(song.song._id)">edit</mat-icon>                                            
-                                         <mat-icon mat-list-icon  matTooltip="Eliminar" (click)="deleteSong(song.song._id)">delete</mat-icon>                                            
+                                        <button mat-icon-button mat-list-icon  matTooltip="Editar" (click)="openDialogEdit(song.song._id)">
+                                            <mat-icon>edit</mat-icon>
+                                        </button>
+                                         <button mat-icon-button mat-list-icon  matTooltip="Eliminar" (click)="deleteSong(song.song._id)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>                                   
                                      </mat-list-item>
                                  </div>
                                  <div fxFlex="10" *ngIf="identity.role=='ROLE_USER'">
                                      <mat-list-item >
-                                         <mat-icon mat-list-icon *ngIf="song.status!=''" (click)="removeFavoritos(song.song._id)"  matTooltip="Quitar de Favoritos" style="cursor: pointer;">favorite</mat-icon>                                            
-                                         <mat-icon mat-list-icon *ngIf="song.status==''" (click)="addFavoritos(song.song._id)"  matTooltip="Añadir a Favoritos" style="cursor: pointer;">favorite_border</mat-icon>                                            
+                                        <button mat-icon-button mat-list-icon *ngIf="song.status!=''" (click)="removeFavoritos(song.song._id)"  matTooltip="Quitar de Favoritos" style="cursor: pointer;">
+                                            <mat-icon>favorite</mat-icon>
+                                          </button>
+                                        <button mat-icon-button mat-list-icon *ngIf="song.status==''" (click)="addFavoritos(song.song._id)"  matTooltip="Añadir a Favoritos" style="cursor: pointer;">
+                                            <mat-icon>favorite_border</mat-icon>
+                                          </button>
                                      </mat-list-item>
                                  </div>                                                                        
                                  <div fxFlex="10" *ngIf="identity.role=='ROLE_USER'">
                                      <mat-list-item >                                   
-                                         <button mat-button [matMenuTriggerFor]="menu"  matTooltip="Listas de Reproduccion">
+                                         <button mat-icon-button mat-list-icon [matMenuTriggerFor]="menu"  matTooltip="Listas de Reproduccion">
                                              <mat-icon mat-list-icon >
                                                  playlist_add
                                              </mat-icon>         

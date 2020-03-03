@@ -15,24 +15,30 @@ export class TokenInterceptorService implements HttpInterceptor {
   } 
   intercept(req:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>{
     console.log("entra al interceptor");   
-    if(this.token)
-    {
-      let headers = new HttpHeaders(
-        {'Content-Type':'application/json','Authorization':this.token}
-      );
-      const cloned=req.clone({
-        headers               
-      });
-      return next.handle(cloned);
-    }
-    else{
-      let headers = new HttpHeaders(
-        {'Content-Type':'application/json'}
-      );
-      const cloned=req.clone({
-        headers
-      });
-      return next.handle(cloned);
-    }
+    let headers;
+    this.token ?  headers = new HttpHeaders({'Content-Type':'application/json','Authorization':this.token}) : headers = new HttpHeaders({'Content-Type':'application/json'});
+    const cloned=req.clone({
+      headers               
+    });
+    return next.handle(cloned);
+    // if(this.token)
+    // {
+    //   let headers = new HttpHeaders(
+    //     {'Content-Type':'application/json','Authorization':this.token}
+    //   );
+    //   const cloned=req.clone({
+    //     headers               
+    //   });
+    //   return next.handle(cloned);
+    // }
+    // else{
+    //   let headers = new HttpHeaders(
+    //     {'Content-Type':'application/json'}
+    //   );
+    //   const cloned=req.clone({
+    //     headers
+    //   });
+    //   return next.handle(cloned);
+    // }
   }
 }
