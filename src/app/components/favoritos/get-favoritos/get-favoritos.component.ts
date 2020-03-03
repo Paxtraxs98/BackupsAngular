@@ -7,8 +7,7 @@ import { global } from '../../../services/global'
 @Component({
   selector: 'app-get-favoritos',
   templateUrl: './get-favoritos.component.html',
-  styleUrls: ['./get-favoritos.component.css'],
-  providers:[UserService,FavoritosService]
+  styleUrls: ['./get-favoritos.component.css'],  
 })
 export class GetFavoritosComponent implements OnInit {
   public identity;
@@ -17,7 +16,10 @@ export class GetFavoritosComponent implements OnInit {
   public songs;
   public url;
 
-  constructor(private _userService:UserService,private _favoritosService:FavoritosService,private _route:ActivatedRoute) { 
+  constructor(
+    private _userService:UserService,
+    private _favoritosService:FavoritosService,
+    private _route:ActivatedRoute) { 
     this.url=global.url;
   }
 
@@ -43,14 +45,14 @@ export class GetFavoritosComponent implements OnInit {
     })
   }
   start(song)
-  {       
-      
-      let song_player = JSON.stringify(song);       
-      let file_path = this.url + 'getFileSong/'+song.file;                    
-      localStorage.setItem("sound-song",song_player);        
-      document.getElementById('mp3-sources').setAttribute("src",file_path);      
-      (document.getElementById('player')as any).load();
-      (document.getElementById('player')as any).play();
+  {         
+    song.type='song';
+    let song_player = JSON.stringify(song);             
+    let file_path = this.url + 'getFileSong/'+song.file;                    
+    localStorage.setItem("sound-song",song_player);        
+    document.getElementById('mp3-sources').setAttribute("src",file_path);      
+    (document.getElementById('player')as any).load();
+    (document.getElementById('player')as any).play();
 
   }
 

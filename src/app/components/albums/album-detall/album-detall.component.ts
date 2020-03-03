@@ -241,7 +241,8 @@ export class AlbumDetallComponent implements OnInit {
   start(song)
   {       
     console.log(song);
-      let song_player = JSON.stringify(song);       
+      song.type='song';
+      let song_player = JSON.stringify(song);             
       let file_path = this.url + 'getFileSong/'+song.file;                    
       localStorage.setItem("sound-song",song_player);        
       document.getElementById('mp3-sources').setAttribute("src",file_path);      

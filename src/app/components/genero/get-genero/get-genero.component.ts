@@ -7,8 +7,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-get-genero',
   templateUrl: './get-genero.component.html',
-  styleUrls: ['./get-genero.component.css'],
-  providers:[GeneroService,UserService]
+  styleUrls: ['./get-genero.component.css']  
 })
 export class GetGeneroComponent implements OnInit {
 

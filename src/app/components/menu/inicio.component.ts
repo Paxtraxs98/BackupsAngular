@@ -6,15 +6,16 @@ import { Router,ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css'],
-  providers :[UserService]
+  styleUrls: ['./inicio.component.css']  
 })
 export class InicioComponent implements OnInit {
   public identity;
   public token;
   public url:string;
   
-  constructor(private _userService:UserService,private _route:ActivatedRoute,private _router:Router) { 
+  constructor(
+    private _userService:UserService,
+    private _router:Router) { 
      this.url=global.url;
   }
 
@@ -22,13 +23,5 @@ export class InicioComponent implements OnInit {
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken();
   }
-  logout()
-  {   
-      localStorage.removeItem('identity');
-      localStorage.removeItem('token');
-      localStorage.clear();      
-      this.identity=null;
-      this.token=null;              
-      this._router.navigate(['']);
-  }
+
 }

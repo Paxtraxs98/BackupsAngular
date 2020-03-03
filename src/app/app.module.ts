@@ -53,7 +53,7 @@ import { SearchComponent } from './components/buscador/search/search.component';
     PlaylistDetallComponent, 
     SearchComponent
   ],
-  entryComponents:[AddGeneroComponent,AddArtistComponent,AddAlbumComponent,DialogSongComponent,AddPlayListComponent],
+  entryComponents:[AddGeneroComponent,AddArtistComponent,AddAlbumComponent,DialogSongComponent,AddPlayListComponent,BarraSuperiorComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -17,7 +17,7 @@ export interface DialogData {
   selector: 'app-add-artist',
   templateUrl: './add-artist.component.html',
   styleUrls: ['./add-artist.component.css']
-  // providers:[UserService,uploadService,ArtistService]
+  
 })
 export class AddArtistComponent implements OnInit {
 

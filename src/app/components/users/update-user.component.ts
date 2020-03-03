@@ -3,9 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { global } from '../../services/global';
 import { User } from '../../models/users';
-import { Router,ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { FileInput } from 'ngx-material-file-input';
 import { uploadService } from "../../services/upload.service";
 
 
@@ -26,7 +24,9 @@ export class updateUserComponent implements OnInit{
   public filesToUpload: Array<File>
 
 
-  constructor(private _userSevice:UserService,private _route:ActivatedRoute,private _router:Router,private _uploadService:uploadService)
+  constructor(
+    private _userSevice:UserService,    
+    private _uploadService:uploadService)
   {
       this.title="Editar Perfil"
       this.url=global.url;                

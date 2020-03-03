@@ -6,14 +6,17 @@ import Swal from 'sweetalert2';
 import { UserService } from '../../../services/user.service';
 import {ArtistService} from '../../../services/artist.service';
 import {AlbumService} from '../../../services/album.service';
+import { SongService } from 'src/app/services/song.service';
 import { AddAlbumComponent } from '../../../components/albums/add-album/add-album.component'
+import { BarraSuperiorComponent } from '../../barra-superior/barra-superior.component'
 import { MatDialog } from '@angular/material';
+
 
 @Component({
   selector: 'app-artist-detall',
   templateUrl: './artist-detall.component.html',
   styleUrls: ['./artist-detall.component.css'],
-  providers:[UserService,ArtistService,AlbumService]
+  providers:[BarraSuperiorComponent]
 })
 export class ArtistDetallComponent implements OnInit {
   public title;
@@ -31,6 +34,8 @@ export class ArtistDetallComponent implements OnInit {
     private _router:Router,
     private _artistService:ArtistService,
     private _albumService:AlbumService,
+    private _songService:SongService,
+    private _repro:BarraSuperiorComponent,
     public dialogArtist:MatDialog
     ) 
   {
@@ -171,5 +176,19 @@ export class ArtistDetallComponent implements OnInit {
           });
       }
     })   
+  }
+  startAlbum(idAlbum)
+  {
+    var playAlbum={};
+    this._songService.getSongs(idAlbum).subscribe(
+      (response:any)=>{        
+        playAlbum={song:response.resultado,type:'album'};              
+        var song_player = JSON.stringify(playAlbum);        
+        localStorage.setItem("sound-song",song_player); 
+        this._repro.reproducir('nueva')
+      },error=>{
+        console.log(error);
+      }
+    );
   }
 }

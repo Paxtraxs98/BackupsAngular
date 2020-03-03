@@ -43,11 +43,13 @@
                                             <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center">
                                                 <p class="titleAlbum">{{album.name}}</p>             
                                                 <div class="optionAdmin" *ngIf="identity.role=='ROLE_ADMIN'">
+                                                    <mat-icon matTooltip="Reproducir"(click)=" startAlbum(album._id)">play_circle_outline</mat-icon>
                                                     <mat-icon matTooltip="Editar" (click)="openDialogedit(album._id)"  >edit</mat-icon>
                                                     <mat-icon matTooltip="Eliminar" (click)="deleteAlbum(album._id)">delete</mat-icon>
                                                     <mat-icon matTooltip="Ver" [routerLink]="['/albumDetall/',album._id]">remove_red_eye</mat-icon>           
                                                 </div>                                   
                                                 <div class="optionUser" *ngIf="identity.role=='ROLE_USER'">            
+                                                    <mat-icon matTooltip="Reproducir"(click)=" startAlbum(album._id)">play_circle_outline</mat-icon>
                                                     <mat-icon matTooltip="Ver" [routerLink]="['/albumDetall/',album._id]">remove_red_eye</mat-icon>           
                                                 </div>
                                             </div>

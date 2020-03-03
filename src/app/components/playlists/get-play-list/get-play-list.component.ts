@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 import { PlaylistService } from '../../../services/playlist.service';
 import { UserService } from '../../../services/user.service' ;
 import { AddPlayListComponent } from '../add-play-list/add-play-list.component'
+import { BarraSuperiorComponent } from '../../barra-superior/barra-superior.component'
 
 @Component({
   selector: 'app-get-play-list',
   templateUrl: './get-play-list.component.html',
-  styleUrls: ['./get-play-list.component.css']
+  styleUrls: ['./get-play-list.component.css'],
+  providers:[BarraSuperiorComponent]
 })
 export class GetPlayListComponent implements OnInit {
+  
 
   displayedColumns: string[]=['namePlayList','actions'];   
   public identity;
@@ -22,8 +25,9 @@ export class GetPlayListComponent implements OnInit {
 
   constructor(
     public _playListService:PlaylistService,
-    public _userService:UserService,
-    public dialogPlayList:MatDialog    
+    public _userService:UserService,    
+    public dialogPlayList:MatDialog,
+    public _repro:BarraSuperiorComponent
   ) { }
 
   ngOnInit() {
@@ -93,6 +97,21 @@ export class GetPlayListComponent implements OnInit {
           });
       }
     })   
+  }
+  startplayList(idPlayList)
+  {    
+    var playPlay={};
+    this._playListService.getPlayList(idPlayList).subscribe(
+      (response:any)=>{        
+        playPlay={song:response.detallPlay,type:'playlist'};              
+        var song_player = JSON.stringify(playPlay);        
+        localStorage.setItem("sound-song",song_player);        
+        this._repro.reproducir('nueva')
+        
+      },error=>{
+        console.log(error);
+      }
+    );
   }
 
 }

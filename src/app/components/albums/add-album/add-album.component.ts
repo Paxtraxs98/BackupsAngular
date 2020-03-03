@@ -1,13 +1,11 @@
 import { Component,OnInit,Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { global } from '../../../services/global';
-import { Router,ActivatedRoute } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 
 import { UserService } from '../../../services/user.service';
 import { uploadService } from "../../../services/upload.service";
-import {ArtistService} from '../../../services/artist.service';
 import {AlbumService} from '../../../services/album.service';
 
 export interface DialogData {
@@ -32,11 +30,8 @@ export class AddAlbumComponent implements OnInit {
   public filesToUpload: Array<File>
 
   constructor(
-    private _userService:UserService,
-    private _route:ActivatedRoute,
-    private _router:Router,
-    private _uploadService:uploadService,
-    private _artistService:ArtistService,
+    private _userService:UserService,    
+    private _uploadService:uploadService,    
     private _albumService:AlbumService,
     public dialogRef: MatDialogRef<AddAlbumComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData

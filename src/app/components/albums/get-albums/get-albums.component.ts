@@ -1,17 +1,20 @@
 import { Component,OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { global } from '../../../services/global';
-import { Router,ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatDialog } from '@angular/material';
 
 import { UserService } from '../../../services/user.service';
-import {ArtistService} from '../../../services/artist.service';
 import {AlbumService} from '../../../services/album.service';
+import {SongService} from '../../../services/song.service';
+import { AddAlbumComponent } from '../../../components/albums/add-album/add-album.component'
+import { BarraSuperiorComponent } from '../../barra-superior/barra-superior.component'
+
+
 @Component({
   selector: 'app-get-albums',
   templateUrl: './get-albums.component.html',
-  styleUrls: ['./get-albums.component.css'],
-  providers:[UserService,ArtistService,AlbumService]
+  styleUrls: ['./get-albums.component.css']  ,
+  providers:[BarraSuperiorComponent]
 
 })
 export class GetAlbumsComponent implements OnInit {
@@ -21,7 +24,12 @@ export class GetAlbumsComponent implements OnInit {
   public url;    
   public albums;
   
-  constructor(private _userService:UserService,private _route:ActivatedRoute,private _router:Router,private _artistService:ArtistService,private _albumService:AlbumService) 
+  constructor(
+    private _userService:UserService,
+    private _albumService:AlbumService,
+    public _songService:SongService,
+    public _repro:BarraSuperiorComponent,
+    public dialogArtist:MatDialog) 
   {
     this.url=global.url;
     this.title="Albums";
@@ -42,6 +50,23 @@ export class GetAlbumsComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+  openDialogedit(idAlbum):void
+  {   
+      this._albumService.getAlbum(idAlbum).subscribe(
+        (response:any)=>{            
+          
+          const dialogRef = this.dialogArtist.open(AddAlbumComponent, {
+            width: '400px',
+            data: {id:response.album._id,name: response.album.name, ano: response.album.ano,description:response.album.description,dialog:"editar"}
+          });      
+          dialogRef.afterClosed().subscribe(result => {      
+            this.getAlbums();  
+          });
+        },error=>{
+          console.log(error);
+        }
+      );    
   }
   deleteAlbum(idAlbum){
     Swal.fire({
@@ -70,5 +95,19 @@ export class GetAlbumsComponent implements OnInit {
           });
       }
     })   
+  }
+  startAlbum(idAlbum)
+  {
+    var playAlbum={};
+    this._songService.getSongs(idAlbum).subscribe(
+      (response:any)=>{        
+        playAlbum={song:response.resultado,type:'album'};              
+        var song_player = JSON.stringify(playAlbum);        
+        localStorage.setItem("sound-song",song_player); 
+        this._repro.reproducir('nueva')
+      },error=>{
+        console.log(error);
+      }
+    );
   }
 }

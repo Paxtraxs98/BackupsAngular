@@ -2,8 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { global } from '../../services/global';
-import { Router,ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
@@ -21,7 +21,8 @@ export class LoginRegisterComponent implements OnInit {
   public MsjerrorLogin;
   public MsjerrorRegister;  
 
-  constructor(private _userSevice:UserService,private _route:ActivatedRoute,private _router:Router)
+  constructor(
+    private _userSevice:UserService)
   {
     this.url=global.url;
   }  

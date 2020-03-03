@@ -13,7 +13,8 @@ export class PaginaInicioComponent implements OnInit {
   public identity;
   public url;
 
-  constructor(private _userService:UserService) { 
+  constructor(
+    private _userService:UserService) { 
     this.url=global.url
   }
 

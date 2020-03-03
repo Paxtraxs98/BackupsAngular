@@ -13,17 +13,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   constructor(private _userService:UserService) { 
     this.token=this._userService.getToken();    
   } 
-
-  // intercept(req,next){  
-    
-  //   let token=this._userService.getToken();    
-  //   let tokenizedReq=req.clone({
-  //     setHeaders:{        
-  //       Authorization:token
-  //     }
-  //   });  
-  //   return next.handle(tokenizedReq);
-  // }
   intercept(req:HttpRequest<any>,next:HttpHandler):Observable<HttpEvent<any>>{
     console.log("entra al interceptor");   
     if(this.token)

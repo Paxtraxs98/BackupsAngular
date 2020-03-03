@@ -9,9 +9,9 @@ import { global } from '../../../services/global'
   styleUrls: ['./playlist-detall.component.css']
 })
 export class PlaylistDetallComponent implements OnInit {
+  
   displayedColumns: string[]=['name','actions'];
   public url;
-
   public playList;
   public namePlayList;
   constructor(
@@ -57,14 +57,14 @@ export class PlaylistDetallComponent implements OnInit {
     });
   }
   start(song)
-  {       
-      
-      let song_player = JSON.stringify(song);       
-      let file_path = this.url + 'getFileSong/'+song.file;                    
-      localStorage.setItem("sound-song",song_player);        
-      document.getElementById('mp3-sources').setAttribute("src",file_path);      
-      (document.getElementById('player')as any).load();
-      (document.getElementById('player')as any).play();
+  {          
+    song.type='song';
+    let song_player = JSON.stringify(song);             
+    let file_path = this.url + 'getFileSong/'+song.file;                    
+    localStorage.setItem("sound-song",song_player);        
+    document.getElementById('mp3-sources').setAttribute("src",file_path);      
+    (document.getElementById('player')as any).load();
+    (document.getElementById('player')as any).play();
 
   }
 }

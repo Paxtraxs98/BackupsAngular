@@ -26,8 +26,7 @@ export class SearchComponent implements OnInit {
       palabra:new FormControl(''),      
     });        
   }
-  applyFilter() {
-    // const palabra = (event.target as HTMLInputElement).value;        
+  applyFilter() {        
     this._buscadorService.search(this.FormFilter.value.palabra).subscribe(
       (response:any)=>{        
         this.albums=response.Albums;
@@ -40,9 +39,10 @@ export class SearchComponent implements OnInit {
 
   }
   start(song)
-  {        
-      console.log(song);
-      let song_player = JSON.stringify(song);       
+  {       
+      
+      song.type='song';
+      let song_player = JSON.stringify(song);             
       let file_path = this.url + 'getFileSong/'+song.file;                    
       localStorage.setItem("sound-song",song_player);        
       document.getElementById('mp3-sources').setAttribute("src",file_path);      

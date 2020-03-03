@@ -12,8 +12,7 @@ export interface DialogData {
 @Component({
   selector: 'app-add-genero',
   templateUrl: './add-genero.component.html',
-  styleUrls: ['./add-genero.component.css'],
-  providers:[GeneroService]
+  styleUrls: ['./add-genero.component.css']  
 })
 export class AddGeneroComponent implements OnInit { 
   public songs;
@@ -53,14 +52,14 @@ export class AddGeneroComponent implements OnInit {
     }    
   }
   start(song)
-  {       
-      
-      let song_player = JSON.stringify(song);       
-      let file_path = this.url + 'getFileSong/'+song.file;                    
-      localStorage.setItem("sound-song",song_player);        
-      document.getElementById('mp3-sources').setAttribute("src",file_path);      
-      (document.getElementById('player')as any).load();
-      (document.getElementById('player')as any).play();
+  {           
+    song.type='song';
+    let song_player = JSON.stringify(song);             
+    let file_path = this.url + 'getFileSong/'+song.file;                    
+    localStorage.setItem("sound-song",song_player);        
+    document.getElementById('mp3-sources').setAttribute("src",file_path);      
+    (document.getElementById('player')as any).load();
+    (document.getElementById('player')as any).play();
 
   }
 }
