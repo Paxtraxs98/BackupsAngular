@@ -50,7 +50,7 @@ export class BarraSuperiorComponent implements OnInit {
             if(this.contador>=song_seleccionada.length)
             {
                 console.log("la playlist se acabo");
-                this.song=song_seleccionada[this.contador-1];
+                this.song=song_seleccionada[0];
                 (audio as any).load();
                 (audio as any).pause();
             }

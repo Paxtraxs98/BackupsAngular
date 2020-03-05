@@ -2,13 +2,11 @@
     <div fxFlex>
         <div fxLayout="row" fxLayoutAlign="center start" style="background-color: white;padding: 20px;">            
             <div fxFlex="70">
-                <form action="" novalidate [formGroup]="FormFilter">
-                    <mat-form-field >
-                        <mat-label>Buscar:Cancion,Album,Artista...</mat-label>
-                        <input matInput (keyup)="applyFilter();" formControlName="palabra">
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
-                </form>
+                 <mat-form-field >
+                    <mat-label>Buscar:Cancion,Album,Artista...</mat-label>
+                    <input matInput [formControl]="palabra">
+                    <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
             </div>            
         </div>
         <div fxLayout="row" fxLayout.lt-sm="column"  fxLayoutAlign="center start" style="background-color: white;" *ngIf="songs && albums && artists">

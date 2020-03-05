@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BuscadorService } from '../../../services/buscador.service'
 import {  global } from '../../../services/global'
-import { FormGroup,FormControl } from '@angular/forms';
+import { FormGroup,FormControl, Form } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -13,7 +14,7 @@ export class SearchComponent implements OnInit {
   public artists;
   public songs;
   public url;
-  FormFilter:FormGroup
+  palabra:FormControl;  
 
   constructor(
     private _buscadorService:BuscadorService
@@ -22,12 +23,16 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.FormFilter=new FormGroup({
-      palabra:new FormControl(''),      
-    });        
+     this.palabra=new FormControl('');  
+     this.palabra.valueChanges.pipe(debounceTime(200)).subscribe(
+       (palabra)=>{
+      this.applyFilter(palabra)     ;
+       }
+     );
   }
-  applyFilter() {        
-    this._buscadorService.search(this.FormFilter.value.palabra).subscribe(
+  //usar en futuras peticiones
+  applyFilter(palabra:string) {        
+    this._buscadorService.search(palabra).subscribe(
       (response:any)=>{        
         this.albums=response.Albums;
         this.artists=response.Artistas;

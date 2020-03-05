@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { global } from '../../services/global';
 import Swal from 'sweetalert2';
@@ -20,9 +20,9 @@ export class LoginRegisterComponent implements OnInit {
   public spinnerStatus=false;
   public MsjerrorLogin;
   public MsjerrorRegister;  
-
+  exampleForm:FormGroup
   constructor(
-    private _userSevice:UserService)
+    private _userSevice:UserService,private _fb:FormBuilder)
   {
     this.url=global.url;
   }  
@@ -30,6 +30,7 @@ export class LoginRegisterComponent implements OnInit {
   ngOnInit() {
     this.token = this._userSevice.getToken();
     this.identity = this._userSevice.getIdentity();        
+    // this.exampleForm = this._fb.group
     this.FormLogin=new FormGroup({
         email:new FormControl('',[Validators.required, Validators.email]),
         password:new FormControl('',[Validators.required])

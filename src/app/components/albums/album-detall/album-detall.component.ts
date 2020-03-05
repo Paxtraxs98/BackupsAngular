@@ -71,6 +71,7 @@ export class AlbumDetallComponent implements OnInit {
       this._songService.getSongs(id).subscribe(
         (response:any)=>{
           this.songs=response.resultado;
+          console.log(this.songs);
         },error=>{
           console.log(error);
         }
