@@ -22,6 +22,10 @@ export class UserService {
              let params = JSON.stringify(user);                
              return this._http.post(this.url+'saveUser',params).pipe(map(res => res));                 
         }
+        validacion()
+        {             
+             return this._http.post(this.url+'preRegister',[]).pipe(map(res => res));                 
+        }
         login(user_login, gethash = null){
             if (gethash != null) {
                 user_login.gethash = gethash;
@@ -38,6 +42,10 @@ export class UserService {
         {               
             let params =JSON.stringify(password_to_update);                       
             return this._http.put(this.url+'updatePassword/'+id,params).pipe(map(res=>res));
+        }
+        delete(idUser)
+        {             
+            return this._http.delete(this.url+'deleteUser/'+idUser).pipe(map(res=>res));
         }
         getIdentity()
         {

@@ -28,6 +28,7 @@ import { GetPlayListComponent } from './components/playlists/get-play-list/get-p
 import { AddPlayListComponent } from './components/playlists/add-play-list/add-play-list.component';
 import { PlaylistDetallComponent } from './components/playlists/playlist-detall/playlist-detall.component';
 import { SearchComponent } from './components/buscador/search/search.component';
+import { ConfirmAccountComponent } from './components/users/confirm-account/confirm-account.component';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { SearchComponent } from './components/buscador/search/search.component';
     GetPlayListComponent, 
     AddPlayListComponent, 
     PlaylistDetallComponent, 
-    SearchComponent
+    SearchComponent, ConfirmAccountComponent
   ],
   entryComponents:[AddGeneroComponent,AddArtistComponent,AddAlbumComponent,DialogSongComponent,AddPlayListComponent,BarraSuperiorComponent],
   imports: [

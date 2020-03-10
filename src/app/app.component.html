@@ -1,24 +1,30 @@
- <div fxLayout="row" *ngIf="!identity">
-    <div fxFlex>
-        <app-login-register></app-login-register>
-    </div>
+<div *ngIf="confirmAccount==true">
+    <app-confirm-account></app-confirm-account>
 </div>
-<div fxLayout="row" *ngIf="identity">        
-    <div fxFlex>
-        <div fxLayout="row">
-            <div fxFlex>
-                <app-barra-superior></app-barra-superior>    
-            </div>
-        </div>
-        <div fxLayout="row" fxLayout.lt-sm="column">
-            <div fxFlex="20" id="menuMusify">
-                <app-inicio></app-inicio>
-            </div>
-            <div fxFlex>
-                <router-outlet></router-outlet>        
-            </div>
+<div *ngIf="confirmAccount==false">
+    <div fxLayout="row" *ngIf="!identity">
+        <div fxFlex>
+            <app-login-register></app-login-register>        
         </div>
     </div>
+    <div fxLayout="row" *ngIf="identity">        
+        <div fxFlex>
+            <div fxLayout="row">
+                <div fxFlex>
+                    <app-barra-superior></app-barra-superior>    
+                </div>
+            </div>
+            <div fxLayout="row" fxLayout.lt-sm="column">
+                <div fxFlex="20" id="menuMusify">
+                    <app-inicio></app-inicio>
+                </div>
+                <div fxFlex>
+                    <router-outlet></router-outlet>        
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    
 </div>
-
-

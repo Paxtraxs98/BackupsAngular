@@ -123,11 +123,13 @@ export class LoginRegisterComponent implements OnInit {
             {                                
                 Swal.fire({
                   icon: 'success',
-                  title: 'Registro Exitoso',
-                  text: 'Tu registro fue exitoso!',
+                  title: 'Tu registro fue exitoso!',
+                  text: response.message,
                   timer: 2000,
                 })    
                 this.FormRegister.reset();           
+                console.log(response);
+                localStorage.setItem('token',JSON.stringify(response.token));                                       
             }
           },
           error => {

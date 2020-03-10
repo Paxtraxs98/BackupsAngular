@@ -13,7 +13,7 @@
         <div fxFlex class="logo">
           <img src="../../../assets/imag/logoMusify.png" alt="">
         </div>
-        <div fxFlex>
+        <div fxFlex *ngIf="identity">
           <audio controls id="player">        
             <source id="mp3-sources" src="{{url+'getFileSong/'+song.file}}" type="audio/mp3">
           </audio>           

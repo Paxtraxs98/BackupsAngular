@@ -1,0 +1,16 @@
+<div fxLayout="row" >
+    <div fxFlex>
+        <app-barra-superior></app-barra-superior>
+    </div>    
+</div>
+<div fxLayout="row" class="contenedor">
+    <div fxFlex>
+        <h3>{{msj}}</h3>
+        <div class="spinner">
+            <mat-progress-bar *ngIf="spinnerStatus" mode="query"></mat-progress-bar>    
+        </div>
+        <div>
+            <a href="http://localhost:4200/">Regresar a la pagina principal</a>
+        </div>
+    </div>    
+</div>

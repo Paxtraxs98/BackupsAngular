@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 export class AppComponent implements OnInit{  
 
   public identity;
+  public confirmAccount;
+  private token;
   constructor(private _useService:UserService)
   {
     
@@ -22,6 +24,17 @@ export class AppComponent implements OnInit{
   ngOnInit()
   {
       this.identity=this._useService.getIdentity();            
-  }
+      var URLactual = window.location;
+      var dividir= JSON.stringify(URLactual);
+      if(dividir.includes('ConfirmAccount'))
+      {        
+        this.confirmAccount=true;
+        // this.Validar();
+      }      
+      else{
+        this.confirmAccount=false;
+      }      
+}
+
 
 }

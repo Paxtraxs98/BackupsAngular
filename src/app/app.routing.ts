@@ -14,7 +14,7 @@ import { GetGeneroComponent } from './components/genero/get-genero/get-genero.co
 import { GetPlayListComponent } from './components/playlists/get-play-list/get-play-list.component';
 import { PlaylistDetallComponent } from './components/playlists/playlist-detall/playlist-detall.component';
 import { SearchComponent } from './components/buscador/search/search.component';
-
+import { ConfirmAccountComponent } from './components/users/confirm-account/confirm-account.component';
 
 const appRoutes: Routes = [    
     {path: '',component:PaginaInicioComponent},             
@@ -28,6 +28,7 @@ const appRoutes: Routes = [
     {path: 'playlist/:id',component:GetPlayListComponent},            
     {path: 'playlistDetall/:id',component:PlaylistDetallComponent},            
     {path: 'Search',component:SearchComponent},            
+    // {path: 'ConfirmAccount/token',component:ConfirmAccountComponent},            
     {path: '**',component:PaginaInicioComponent}             
  ];
  
