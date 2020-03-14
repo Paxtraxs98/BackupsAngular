@@ -1,6 +1,7 @@
 .menu-lateral
 {    
-  background-color: rgb(249, 249, 249);  
+  /* background-color: rgba(0,0,0,.5); */
+  background-color: rgba(0,0,0,.8);
   padding: 10px;
   height: 89vh;  
 }
@@ -8,23 +9,22 @@
   {    
     height: auto;
     width: 100%;        
-  }  
+  }    
   mat-nav-list span{
-    color:rgba(0, 0, 0,.6);        
+    /* color:rgba(0, 0, 0,.6);         */
+    color:white;
     font-family: 'Montserrat', sans-serif;
   }
   mat-nav-list mat-icon
   {
-    color:rgba(0, 0, 0,.6);        
-  }  
-
-
+    /* color:rgba(0, 0, 0,.6);         */
+    color:white
+  }    
   @media (max-width: 600px) {
-    /* .menu-lateral
+    .menu-lateral
     {  
-      background-color: RED;  
-  
-    } */
+      height: auto;      
+    } 
   }
   
   

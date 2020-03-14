@@ -43,10 +43,11 @@ mat-hint
 .btn-upload
 {
     margin-top: 5px;
+    text-align: center;
 }
 .btn-upload label
 {    
-    width: 50%;
+    width: auto;
     cursor: pointer;
     background-color: transparent;
     padding: 10px;

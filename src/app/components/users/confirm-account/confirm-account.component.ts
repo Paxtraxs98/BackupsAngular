@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 export class ConfirmAccountComponent implements OnInit {
   public identity;
   public token;
+  public token_caducado;
   public msj;
   public spinnerStatus;
   constructor(
@@ -18,6 +19,7 @@ export class ConfirmAccountComponent implements OnInit {
   ) { 
     this.identity=this._userService.getIdentity();
     this.token=this._userService.getToken()
+    this.token_caducado=false;
     this.msj="Espere estamos verificando la cuenta..."
   }
 
@@ -31,9 +33,15 @@ export class ConfirmAccountComponent implements OnInit {
    {
     this.verificar(idUser);
    }   
+   else
+   {
+    this.msj="Error ,ya ha verificado su cuenta o el tiempo de verificacion caduco..."          
+    this.token_caducado=true;
+   }
+   
   }
   verificar(idUser){
-    this.spinnerStatus=true;    
+    this.spinnerStatus=true;        
     setTimeout(()=>{
       this.spinnerStatus=false;        
       this._userService.validacion().subscribe(

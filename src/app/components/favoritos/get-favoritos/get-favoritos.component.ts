@@ -37,7 +37,7 @@ export class GetFavoritosComponent implements OnInit {
         let id = params['id'];
         this._favoritosService.getFavoritos(id).subscribe(
           (response:any)=>{                        
-            this.songs=response.favoritos;            
+            this.songs=response.favoritos;                        
           },error=>{
             console.log(error);
           }

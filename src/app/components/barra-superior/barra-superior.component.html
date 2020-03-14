@@ -1,28 +1,38 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="nav" *ngIf="identity">
   <mat-toolbar-row>    
     <div fxFlex>
       <div fxLayout="row"fxLayoutAlign="center center">
         <div fxFlex  class="menu">
-          <button mat-raised-button color="primary"  (click)="openMenu()" id="btnOpen">
+          <button mat-raised-button  (click)="openMenu()" id="btnOpen">
             <mat-icon>menu</mat-icon>
           </button>                 
-          <button mat-raised-button color="primary"  (click)="closeMenu()" id="btnClose">
+          <button mat-raised-button  (click)="closeMenu()" id="btnClose">
             <mat-icon>close</mat-icon>
           </button>
         </div>
         <div fxFlex class="logo">
-          <img src="../../../assets/imag/logoMusify.png" alt="">
+          <img src="../../../assets/imag/logoMusify.png" alt="">          
         </div>
-        <div fxFlex *ngIf="identity">
+        <div fxFlex *ngIf="song">          
           <audio controls id="player">        
             <source id="mp3-sources" src="{{url+'getFileSong/'+song.file}}" type="audio/mp3">
           </audio>           
         </div>
-        <div fxFlex class="exit">
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
+        <div fxFlex class="exit" *ngIf="identity">          
+          <button mat-icon-button class="buscar" [routerLink]="['/Search']" matTooltip="Buscar">
+            <i class="material-icons">
+              search
+            </i>
+          </button>
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="setting">
+            <img src="../../../assets/imag/no-album.png" alt="" *ngIf="identity.imagen=='null'" id="identity_image">
+            <img src="{{url + 'imageUser/' + identity.imagen}}" alt="perfil" id="identity_image" *ngIf="identity.imagen!='null'">
           </button>
           <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="['/update-user']">
+              <mat-icon>person</mat-icon>
+              <span>Perfil</span>
+            </button>
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               <span>Salir</span>
@@ -34,30 +44,41 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- <div>      
-  
-<div fxFlex  class="menu">
-          <i class="material-icons">
-            menu
-          </i>
-        </div>
-        <div fxFlex  class="logo">
-          <img src="../../../assets/imag/logoMusify.png" alt="">
-        </div>
-        <div fxFlex class="reproductor" *ngIf="identity">
-          <audio controls id="player">        
-            <source id="mp3-sources" src="{{url+'getFileSong/'+song.file}}" type="audio/mp3">
-          </audio> 
-        </div>
-        <div fxFlex class="exit" *ngIf="identity">             
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="logout()">
-              <mat-icon>exit_to_app</mat-icon>
-              <span>Salir</span>
-            </button>    
-          </mat-menu>
-        </div>
-</div> -->
+
+<mat-toolbar class="nav" *ngIf="!identity">
+  <mat-toolbar-row>
+      <div fxFlex >  
+          <div fxLayout="row" fxLayoutAlign="center center">
+              <div fxFlex >
+                  <img src="../../../assets/imag/logoMusify.png" alt="logoMusify" width="80px">
+              </div>
+              <div fxFlex style="text-align: right;" class="btnOpen">                                                    
+                  <button mat-button  class="info">
+                      <mat-icon>info</mat-icon>
+                      <span>Acerca de</span>
+                  </button>
+                  <button mat-button class="contacts">
+                      <mat-icon>local_phone</mat-icon>
+                      <span>Contactos</span>
+                  </button>
+                  <button mat-button [matMenuTriggerFor]="cuenta" *ngIf="account==true">
+                      <mat-icon>person_pin</mat-icon>
+                      <span>Mi Cuenta</span>
+                  </button>
+                  <mat-menu #cuenta="matMenu" class="cuenta">
+                          <button mat-menu-item (click)="openLogin
+                          ()">
+                              <mat-icon>vpn_key</mat-icon>
+                              <span>Login</span>
+                            </button> 
+                            <button mat-menu-item (click)="openRegister
+                            ()">
+                              <mat-icon>person_add</mat-icon>
+                              <span>Registro</span>
+                            </button> 
+                  </mat-menu>
+              </div>
+          </div>         
+      </div>  
+  </mat-toolbar-row>
+</mat-toolbar>                                      

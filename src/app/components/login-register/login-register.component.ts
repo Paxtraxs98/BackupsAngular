@@ -1,6 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit,ViewChild,ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators,FormBuilder } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import {  BarraSuperiorComponent } from '../../components/barra-superior/barra-superior.component'
 import { global } from '../../services/global';
 import Swal from 'sweetalert2';
 
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2';
   selector: 'app-login-register',
   templateUrl: './login-register.component.html',
   styleUrls: ['./login-register.component.css'],
-  providers:[UserService]
+  providers:[BarraSuperiorComponent]
 })
 export class LoginRegisterComponent implements OnInit {
   FormLogin:FormGroup; 
@@ -17,19 +18,25 @@ export class LoginRegisterComponent implements OnInit {
   public identity;
   public url:string;
   public userRegister;
-  public spinnerStatus=false;
-  public MsjerrorLogin;
-  public MsjerrorRegister;  
-  exampleForm:FormGroup
+  public spinnerStatus=false;    
+
+  auth2: any;
+ 
+  @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
+  
   constructor(
-    private _userSevice:UserService,private _fb:FormBuilder)
+    private _userSevice:UserService,
+    private _barraSuperior:BarraSuperiorComponent,
+    private _fb:FormBuilder)
   {
     this.url=global.url;
+    
   }  
 
   ngOnInit() {
     this.token = this._userSevice.getToken();
-    this.identity = this._userSevice.getIdentity();        
+    this.identity = this._userSevice.getIdentity();               
+    
     // this.exampleForm = this._fb.group
     this.FormLogin=new FormGroup({
         email:new FormControl('',[Validators.required, Validators.email]),
@@ -39,8 +46,9 @@ export class LoginRegisterComponent implements OnInit {
         name:new FormControl('',[Validators.required]),
         email:new FormControl('',[Validators.required, Validators.email]),
         password:new FormControl('',[Validators.required,Validators.minLength(4)])
-      });
-  }
+      });      
+      this.googleSDK();
+  } 
   onSubmit()
   {
     //console.log(this.FormLogin);      
@@ -77,28 +85,24 @@ export class LoginRegisterComponent implements OnInit {
                      }
                    },error =>{
                      if(<any>error)
-                     {
-                       this.MsjerrorLogin=error.error.message;                   
+                     {                       
                        Swal.fire({
                           icon: 'error',
                           title: 'Ooops!!',
-                          text: this.MsjerrorLogin,
+                          text: error.error.message,
                           timer: 2000,
                         });
                      }
                    }
                  );
              }
-          },error =>{
-            console.log(error);
+          },error =>{            
             if(<any>error)
-                 {
-                   
-                  this.MsjerrorLogin=error.error.message;                   
+                 {                   
                   Swal.fire({
                      icon: 'error',
                      title: 'Ooops!!',
-                     text: this.MsjerrorLogin,
+                     text: error.error.message,
                      timer: 2000,
                    });
                  }
@@ -107,7 +111,6 @@ export class LoginRegisterComponent implements OnInit {
     },3000);
     
   }
-
   onSubmitRegister()
   {
     this.spinnerStatus=true;
@@ -145,5 +148,70 @@ export class LoginRegisterComponent implements OnInit {
    },5000);
       
   }
+  closeModal()
+  {   
+    document.getElementById('loginContent').style.display = 'none'; 
+    document.getElementById('registerContent').style.display = 'none';    
+  }
+  googleSDK() {
+ 
+    window['googleSDKLoaded'] = () => {
+      window['gapi'].load('auth2', () => {
+        this.auth2 = window['gapi'].auth2.init({
+          client_id: '1004572504781-hoodv4n6c9ovubrp8n73qv4faeo00kcj.apps.googleusercontent.com',
+          cookiepolicy: 'single_host_origin',
+          scope: 'profile email'
+        });
+        this.prepareLoginButton();
+      });
+    }
+ 
+    (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://apis.google.com/js/platform.js?onload=googleSDKLoaded";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'google-jssdk'));
+ 
+  }
+  prepareLoginButton() { 
+    this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
+      (googleUser) => { 
+        // let profile = googleUser.getBasicProfile();
+        // console.log('Token || ' + googleUser.getAuthResponse().id_token);
+        // console.log('ID: ' + profile.getId());
+        // console.log('Name: ' + profile.getName());
+        // console.log('Image URL: ' + profile.getImageUrl());
+        // console.log('Email: ' + profile.getEmail());
+        //YOUR CODE HERE        
+        this._userSevice.loginGoogle(googleUser.getAuthResponse().id_token).subscribe(
+          (response:any)=>{               
+            console.log(response);
+            this.identity = response.userSave[0];        
+            localStorage.setItem('identity',JSON.stringify(this.identity));                       
+            localStorage.setItem('token',JSON.stringify(response.token));                       
+            Swal.fire({
+              icon: 'success',
+              title: 'Bienvenido',
+              text: 'Iniciaste sesion correctamente!',
+              timer: 2000,
+            }).then(function(){ 
+              location.reload();
+              });
+          },error=>{            
+            Swal.fire({
+              icon: 'error',
+              title: 'Ouups',
+              text: error.error.message,
+              timer: 2000,
+            })
+          }
 
+        );
+ 
+      }, (error) => {
+        alert(JSON.stringify(error, undefined, 2));
+      }); 
+    }    
 }

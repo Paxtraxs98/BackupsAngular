@@ -3,7 +3,7 @@
         <app-barra-superior></app-barra-superior>
     </div>    
 </div>
-<div fxLayout="row" class="contenedor">
+<div fxLayout="row" class="contenedor" *ngIf="token_caducado==false">
     <div fxFlex>
         <h3>{{msj}}</h3>
         <div class="spinner">
@@ -11,6 +11,17 @@
         </div>
         <div>
             <a href="http://localhost:4200/">Regresar a la pagina principal</a>
+        </div>
+    </div>    
+</div>
+<div fxLayout="row" class="contenedor" *ngIf="token_caducado==true">
+    <div fxFlex style="text-align: center;">
+        <h3>{{msj}}</h3>        
+        <div>
+            <a href="http://localhost:4200/">Regresar a la pagina principal</a>
+        </div>
+        <div>
+            <img src="../../../../assets/imag/token_caducado.png" alt="token_caducado" width="300px">
         </div>
     </div>    
 </div>

@@ -14,17 +14,31 @@ export class BarraSuperiorComponent implements OnInit {
   public token;
   public song;
   public url;  
-  
+  public login;
+  public register;
   public contador;
+  public account;
   constructor(private _userService:UserService) {
     this.url=global.url;    
     this.contador=0;
+    this.login=false;
+    this.register=false;
+    this.account=true
    }
 
   ngOnInit() {
-      this.identity=this._userService.getIdentity();
+      this.identity=this._userService.getIdentity();      
       this.token=this._userService.getToken();
-      this.reproducir();
+      var URLactual = window.location;
+      var dividir= JSON.stringify(URLactual);
+      if(dividir.includes('ConfirmAccount'))
+      {        
+        this.account=false;
+      }              
+      if(this.identity)
+      {
+        this.reproducir();
+      }      
   }
 
   reproducir(tipoReproduccion='') {    
@@ -45,100 +59,49 @@ export class BarraSuperiorComponent implements OnInit {
           break;
         case 'playlist':
             var song_seleccionada=playlist.song[0].playlist;                      
-            console.log("es una playlist");                            
-            this.song=song_seleccionada[this.contador];            
+            console.log("es una playlist");                                        
+            console.log(song_seleccionada.length);
             if(this.contador>=song_seleccionada.length)
             {
                 console.log("la playlist se acabo");
-                this.song=song_seleccionada[0];
+                this.contador=0;                               
+                var song=song_seleccionada[this.contador].file           
+                document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+song); 
                 (audio as any).load();
                 (audio as any).pause();
             }
             else{            
+              this.song=song_seleccionada[this.contador];            
                 document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+this.song.file);      
                 (audio as any).load();
                 (audio as any).play();
                 this.nextSong();                              
             } 
           break;
-        case 'album':
-            this.song=playlist.song[this.contador].song;
+        case 'album':          
             console.log('album');     
-            var long=playlist.song.length-1;            
-            if(this.contador>long)
+            var long=playlist.song.length;                                    
+            if(this.contador==long)
            {              
-              this.song=playlist.song[this.contador-1].song.file;
+             this.contador=0;
+             console.log("Se acabo el album");
+              this.song=playlist.song[this.contador].song;
+              var song_seleccionada=playlist.song[this.contador].song.file;                
+              document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+song_seleccionada);      
               (audio as any).load();
-              (audio as any).pause();
+              (audio as any).pause();              
             }
             else
             {                                 
               var song_seleccionada=playlist.song[this.contador].song.file;                
+              this.song=playlist.song[this.contador].song;
               document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+song_seleccionada);      
               (audio as any).load();
               (audio as any).play();
               this.nextSong();                              
             } 
           break;
-      }
-      
-      // if(tipo=='song')
-      // {
-      //   // var song_seleccionada=playlist
-      //   console.log("es una cancion");        
-      //   this.song=playlist;       
-                 
-      // }
-      // else
-      // {
-      //   if(tipo=='playlist')
-      //   {
-      //     var song_seleccionada=playlist.song[0].playlist;                      
-      //     console.log("es una playlist");
-      //     // var songs=song_seleccionada;                    
-      //     // this.song=songs[this.contador];                         
-      //     this.song=song_seleccionada[this.contador];
-      //     // if(this.contador>=songs.length)
-      //     if(this.contador>=song_seleccionada.length)
-      //     {
-      //         console.log("la playlist se acabo");
-      //         this.song=song_seleccionada[this.contador-1];
-      //         (audio as any).load();
-      //         (audio as any).pause();
-
-      //     }
-      //     else{            
-      //       document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+this.song.file);      
-      //       (audio as any).load();
-      //       (audio as any).play();
-      //       this.nextSong();                              
-      //     }          
-      //   }
-      //   else
-      //   {
-      //     if(tipo=='album')
-      //     {
-      //       // this.song=['','','',''];            
-      //       this.song=playlist.song[this.contador].song;
-      //       console.log('album');     
-      //       var long=playlist.song.length-1;            
-      //       if(this.contador>long)
-      //      {              
-      //         this.song=playlist.song[this.contador-1].song.file;
-      //         (audio as any).load();
-      //         (audio as any).pause();
-
-      //       }
-      //       else{                                 
-      //         var song_seleccionada=playlist.song[this.contador].song.file;                
-      //         document.getElementById('mp3-sources').setAttribute("src",this.url + 'getFileSong/'+song_seleccionada);      
-      //         (audio as any).load();
-      //         (audio as any).play();
-      //         this.nextSong();                              
-      //       }   
-      //     }
-      //   }
-      // }      
+      }        
     }        
     else
     {
@@ -174,6 +137,16 @@ export class BarraSuperiorComponent implements OnInit {
     btnOpen.style.display="block";
     btnClose.style.display="none";
     menuOpen.style.display='none';
+  }
+  openLogin()
+  {      
+      document.getElementById('registerContent').style.display = 'none';
+      document.getElementById('loginContent').style.display = 'block';        
+  }
+  openRegister()
+  {     
+      document.getElementById('loginContent').style.display = 'none';
+      document.getElementById('registerContent').style.display = 'block';        
   }
   logout()
   {   

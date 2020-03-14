@@ -1,124 +1,138 @@
-    
-<div class="cont-login-register">    
-    <div fxLayout="row wrap">         
+  <div class="cont-login-register">    
+    <div fxLayout="row wrap" fxLayoutAlign="center center">                                
         <div fxFlex>
-            <div fxLayout="row" fxLayoutAlign="start center" >                
-                <div fxFlex style="height: 10vh">                    
-                    <mat-toolbar color="primary">
-                        <mat-toolbar-row>
-                            <img src="../../../assets/imag/logoMusify.png" alt="logoMusify" width="100px">
-                            <span class="espacio"></span>
-                            <button mat-button>Acerca</button>
-                            <button mat-button>Contactos</button>
-                        </mat-toolbar-row>
-                    </mat-toolbar>
-                </div>
-            </div>
-            <div fxLayout="row" fxLayoutAlign="end center" style="height: 80vh;padding: 20px;">
-                <div  fxFlex="30"fxFlex.md="40" fxFlex.sm="70" fxFlex.xs="90">
-                    <mat-card >               
-                        <mat-tab-group mat-stretch-tabs >
-                            <mat-tab label="Login"> 
-                               <mat-card-content>
-                                <form id="FormLogin" novalidate [formGroup]="FormLogin"  (ngSubmit)="onSubmit()">         
-                                    <div>                               
-                                       <mat-form-field>              
-                                            <mat-label>Email</mat-label>
-                                            <input 
-                                            type="email"
-                                            formControlName="email" 
-                                            matInput 
-                                            >          
-                                            <mat-icon matSuffix>email</mat-icon>      
-                                        </mat-form-field>   
-                                        <mat-hint style="color:red" *ngIf="FormLogin.get('email').hasError('email')">
-                                            *Email Invalido
-                                        </mat-hint>
-                                    </div>
-                                    <div>
-                                        <mat-form-field>              
-                                            <mat-label>Password</mat-label>
-                                            <input 
-                                            type="password"
-                                            formControlName="password" 
-                                            matInput>
-                                            <mat-icon matSuffix>vpn_key</mat-icon>
-                                        </mat-form-field>            
-                                        <mat-hint style="color:red" *ngIf="FormLogin.get('password').touched && FormLogin.get('password').hasError('required')">
-                                            *Password Requerido
-                                        </mat-hint>
-                                    </div>
-                                    <div>
-                                        <button type="submit" [disabled]="FormLogin.invalid"  color="primary" mat-raised-button class="btn">Iniciar Sesion</button>            
-                                    </div>
-                                    <div class="spinner">
-                                        <mat-progress-bar *ngIf="spinnerStatus" mode="query"></mat-progress-bar>    
-                                    </div>                            
-                                </form>                        
-                               </mat-card-content>
-                            </mat-tab>
-                             <mat-tab label="Register">  
-                               <mat-card-content>
-                                <form id="FormRegistro" novalidate [formGroup]="FormRegister"  (ngSubmit)="onSubmitRegister()">            
-                                    <div>
-                                        <mat-form-field>              
-                                             <mat-label>Nombre</mat-label>
-                                             <input 
-                                             type="text"
-                                             formControlName="name" 
-                                             matInput 
-                                             >     
-                                             <mat-icon matSuffix>people</mat-icon>           
-                                         </mat-form-field>   
-                                         <mat-hint style="color:red" *ngIf="FormRegister.get('name').touched && FormRegister.get('name').hasError('required')">
-                                             *Nombre Requerido
-                                         </mat-hint>
-                                     </div>
-                                    <div>
-                                       <mat-form-field>              
-                                            <mat-label>Email</mat-label>
-                                            <input 
-                                            type="email"
-                                            formControlName="email" 
-                                            matInput 
-                                            >           
-                                            <mat-icon matSuffix>email</mat-icon>     
-                                        </mat-form-field>   
-                                        <mat-hint style="color:red" *ngIf="FormRegister.get('email').hasError('email')">
-                                            *Email Invalido
-                                        </mat-hint>
-                                    </div>
-                                    <div>
-                                        <mat-form-field>              
-                                            <mat-label>Password</mat-label>
-                                            <input 
-                                            type="password"
-                                            formControlName="password" 
-                                            matInput>
-                                            <mat-icon matSuffix>vpn_key</mat-icon>
-                                        </mat-form-field>            
-                                        <mat-hint style="color:red" *ngIf="FormRegister.get('password').touched && FormRegister.get('password').hasError('required') ">
-                                            *Password Requerido
-                                        </mat-hint>
-                                        <mat-hint style="color:red" *ngIf="FormRegister.get('password').hasError('minlength') ">
-                                            *Password minimo de 4 caracteres
-                                        </mat-hint>
-                                    </div>
-                                    <div>
-                                        <button type="submit" [disabled]="FormRegister.invalid"  color="primary" mat-raised-button class="btn">Registrarse</button>            
-                                    </div>
-                                    <div class="spinner">
-                                        <mat-progress-bar *ngIf="spinnerStatus" mode="query"></mat-progress-bar>    
-                                    </div>                            
-                                </form>                        
-                               </mat-card-content>
-                             </mat-tab>                          
-                        </mat-tab-group>
-                    </mat-card>
-                </div> 
-            </div>
+            <app-barra-superior></app-barra-superior>
         </div>
-              
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" class="modal">
+        <div fxFlex="50" fxFlex.xs="90" class="loginContent" id="loginContent">            
+            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" style="height: 100%;">
+                <div fxFlex class="formLogin">
+                    <div style="text-align: center;" class="titleRegister">
+                        <h2>Inicia Sesion</h2>
+                    </div>
+                    <div style="text-align: center;" class="btnGoogle">                                              
+                        <!-- <div matTooltip="Inicia con Google" class="g-signin2" data-onsuccess="onSignIn" id="accountGoogle" style="text-align: center;" ></div>                     -->
+                        <button class="loginBtn loginBtn--google" #loginRef id="accountGoogle">
+                            <i class="fab fa-google"></i><span style="margin-left: 5px;">Inicia Sesion  con Google</span>
+                        </button>  
+                    </div>
+                    <form id="FormLogin" novalidate [formGroup]="FormLogin"  (ngSubmit)="onSubmit()">         
+                        <div>                               
+                           <mat-form-field color="accent">              
+                                <mat-label>Email</mat-label>
+                                <input 
+                                type="email"
+                                formControlName="email" 
+                                matInput 
+                                >          
+                                <mat-icon matSuffix>email</mat-icon>      
+                            </mat-form-field>   
+                            <mat-hint style="color:red;font-size: 10px;" *ngIf="FormLogin.get('email').hasError('email')">
+                                *Email Invalido
+                            </mat-hint>
+                        </div>
+                        <div>
+                            <mat-form-field color="accent">              
+                                <mat-label>Password</mat-label>
+                                <input 
+                                type="password"
+                                formControlName="password" 
+                                matInput>
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                            </mat-form-field>            
+                            <mat-hint style="color:red;font-size: 10px;" *ngIf="FormLogin.get('password').touched && FormLogin.get('password').hasError('required')">
+                                *Password Requerido
+                            </mat-hint>
+                        </div>
+                        <div>
+                            <a href="">Olvidaste tu contraseña?</a>
+                        </div>
+                        <div>
+                            <button type="submit" [disabled]="FormLogin.invalid"  color="warn" mat-raised-button class="btn">Iniciar Sesion</button>            
+                        </div>
+                        <div class="spinner">
+                            <mat-progress-bar color="warn" *ngIf="spinnerStatus" mode="query"></mat-progress-bar>    
+                        </div>                            
+                    </form>
+                </div>
+                <div fxFlex class="imgLogin" >
+                    <div fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-icon-button (click)="closeModal()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        <div fxFlex="50" fxFlex.xs="90" class="registerContent" id="registerContent">            
+            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center center" style="height: 100%;">
+                <div fxFlex class="formRegister">                    
+                    <div style="text-align: center;" class="titleRegister">
+                        <h2>Registrarse</h2>
+                    </div>
+                    <form id="FormRegistro" novalidate [formGroup]="FormRegister"  (ngSubmit)="onSubmitRegister()">            
+                        <div>
+                            <mat-form-field color="accent">              
+                                 <mat-label>Nombre</mat-label>
+                                 <input 
+                                 type="text"
+                                 formControlName="name" 
+                                 matInput 
+                                 >     
+                                 <mat-icon matSuffix>people</mat-icon>           
+                             </mat-form-field>   
+                             <mat-hint style="color:red;font-size: 10px;" *ngIf="FormRegister.get('name').touched && FormRegister.get('name').hasError('required')">
+                                 *Nombre Requerido
+                             </mat-hint>
+                         </div>
+                        <div>
+                           <mat-form-field color="accent">              
+                                <mat-label>Email</mat-label>
+                                <input 
+                                type="email"
+                                formControlName="email" 
+                                matInput 
+                                >           
+                                <mat-icon matSuffix>email</mat-icon>     
+                            </mat-form-field>   
+                            <mat-hint style="color:red;font-size: 10px;" *ngIf="FormRegister.get('email').hasError('email')">
+                                *Email Invalido
+                            </mat-hint>
+                        </div>
+                        <div>
+                            <mat-form-field color="accent">              
+                                <mat-label>Password</mat-label>
+                                <input 
+                                type="password"
+                                formControlName="password" 
+                                matInput>
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                            </mat-form-field>            
+                            <mat-hint style="color:red;font-size: 10px;" *ngIf="FormRegister.get('password').touched && FormRegister.get('password').hasError('required') ">
+                                *Password Requerido
+                            </mat-hint>
+                            <mat-hint style="color:red;font-size: 10px;" *ngIf="FormRegister.get('password').hasError('minlength') ">
+                                *Password minimo de 4 caracteres
+                            </mat-hint>
+                        </div>
+                        <div>
+                            <button type="submit" [disabled]="FormRegister.invalid"  color="warn" mat-raised-button class="btn">Registrarse</button>            
+                        </div>
+                        <div class="spinner">
+                            <mat-progress-bar color="warn" *ngIf="spinnerStatus" mode="query"></mat-progress-bar>    
+                        </div>                            
+                    </form>
+                </div>
+                <div fxFlex class="imgRegister" >
+                    <div fxLayout="row" fxLayoutAlign="end center">
+                        <button mat-icon-button (click)="closeModal()"> 
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
 </div>
  

@@ -33,6 +33,11 @@ export class UserService {
             let params = JSON.stringify(user_login);               
             return this._http.post(this.url+'login',params).pipe(map(res => res));
          }     
+         loginGoogle(token){                
+             console.log("si entra a laruta");
+            let params = JSON.stringify({token:token});                 
+            return this._http.post(this.url+'loginGoogle',params).pipe(map(res => res));
+         }     
         update_user(user_to_update)
         {
             let params =JSON.stringify(user_to_update);                                    

@@ -1,43 +1,121 @@
-.cont-login-register {        
-    height: 100vh;                
-    /* background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%); */
-    background-image: url(../../../assets/imag/banner-p.jpg);
+.cont-login-register 
+  {        
+    height: 100vh;                    
+    background-image: url(../../../assets/imag/banner-p3.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-  }   
-  mat-form-field
-  {
-    width: 80%;
-    display: block;
-    margin: 20px auto 0px auto;
+  }     
+  /* /////////////////////LOGIN//////////////////////////////// */
+  .modal{
+    height: 89vh;  
+    margin-top: 10vh;      
+    z-index: 1;
   }
-  mat-card-content 
+  .modal .loginContent
+  {
+    background-color: rgb(255, 255, 255);
+    height: 400px;    
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    
+  }
+  .modal .loginContent .btnGoogle
   {
     text-align: center;
-    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .modal .loginContent .btnGoogle #accountGoogle
+  {
+    background-color:#db4a39;
+    color:white;
+    font-weight: bolder;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: none;
+  }
+  .modal .loginContent .formLogin
+  {
+    width: 100%;
+    padding: 20px;    
+  }
+  .modal .loginContent .formLogin .btn
+  {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .modal .loginContent  .imgLogin
+  {
+    height: 100%;
+    background-image: url(../../../assets/imag/imgLogin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  /* ////////////////////////////////////////////////////////////// */
+
+  /* ///////////////////Register/////////// //////////////////////*/
+  .modal .registerContent
+  {
+    background-color: rgb(255, 255, 255);
+    height: 400px;    
+    border-radius: 10px;
+    overflow: hidden;
+    display: none
+  }  
+  .modal .registerContent .formRegister
+  {
+      width: 100%;
+    padding: 20px;
+  }
+  .modal .registerContent .formRegister .btn
+  {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .modal .registerContent  .imgRegister
+  {
+    height: 100%;
+    background-image: url(../../../assets/imag/imgRegister.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  /* //////////////////////////////////////////////////////////// */
+  mat-form-field
+  {
+    width: 100%;    
+    display: block;
+    margin: 0px auto 0px auto;
+    color: rgba(0,0,0,.6);
   }
   mat-hint
   {
     text-align: left;
-    width: 80%;
+    width: 100%;
+    height: auto;
     display: block;
-    margin: auto;
-  }
+    margin: 0px auto 0px auto;
+  }  
   .spinner
   {
     margin-top: 20px;
     text-align: center;
   }
-
-  /* .menu-lateral
-  {
-    background-color: rgb(242, 242, 242);
-    height: 90vh;        
-  } */
-
-  
-  .espacio {
-    flex: 1 1 auto;
+  @media (max-width: 700px) {    
+    .nav{      
+      padding: 10px 10px;      
+    }     
+    .modal .loginContent,.modal .registerContent
+    {
+      height: auto;
+    }
+    .modal .loginContent  .imgLogin,.modal .registerContent  .imgRegister
+    {
+      display: none;
+    }
+    
   }
   

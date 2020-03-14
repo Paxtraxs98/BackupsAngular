@@ -7,7 +7,7 @@
             <app-login-register></app-login-register>        
         </div>
     </div>
-    <div fxLayout="row" *ngIf="identity">        
+    <div fxLayout="row" *ngIf="identity" class="logueado">        
         <div fxFlex>
             <div fxLayout="row">
                 <div fxFlex>
@@ -22,9 +22,6 @@
                     <router-outlet></router-outlet>        
                 </div>
             </div>
-        </div>
-        
-    </div>
-    
-    
+        </div>        
+    </div>  
 </div>

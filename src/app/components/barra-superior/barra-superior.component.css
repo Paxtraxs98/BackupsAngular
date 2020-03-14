@@ -1,6 +1,11 @@
-mat-toolbar
+/* -------------------------toolbar identity---------------------- */
+.nav
 {
-    height: 10vh;    
+    height: 70px;  
+    /* background-color: rgba(0,0,0,.5);   */
+    background-color: rgba(0,0,0,.8);  
+    padding: 10px 60px;
+    box-shadow: 2px 0 3px rgba(0,0,0,.8);
 }
 .logo{
     text-align: left;    
@@ -15,11 +20,31 @@ audio{
 {    
     text-align: right;
 }
+.exit .buscar 
+{
+    margin-right: 5px;
+}
+.exit .buscar i
+{
+    color: white;
+    font-size: 25px;
+}
+.exit .setting img
+{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -10px;
+}
 .menu{
     display: none;        
 }
-.menu i{
+.menu button{
+    background-color: transparent;
+}   
+.menu mat-icon{
     font-size: 30px;
+    color: white;
 }
 
 #btnClose{
@@ -28,7 +53,26 @@ audio{
 #btnOpen{
     display: none;
 }
+/* ----------------------------------------------------------- */
+/* -------------------------tooolbar !identity---------------------------- */
+.btnOpen button span{  
+    color:rgba(255,255,255,.7);
+    font-size: 15px;
+    z-index: 999;
+  }
+  .btnOpen button span:hover{  
+    color:rgba(255,255,255,1);
+  }
+  .btnOpen button mat-icon{  
+    color:white;    
+  }
+/* ----------------------------------------------------------- */
+
+
 @media (max-width: 600px) {
+    .nav{
+        padding: 10px;
+    }
     .logo{
         display: none;
     }
@@ -38,6 +82,10 @@ audio{
     #btnOpen{
         display: block;
     }    
+    .info,.contacts
+    {
+        display: none;
+    }
     
   }
   

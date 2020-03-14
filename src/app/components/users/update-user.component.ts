@@ -40,8 +40,7 @@ export class updateUserComponent implements OnInit{
       name:new FormControl(this.identity.name,[Validators.required]),
       email:new FormControl(this.identity.email,[Validators.required, Validators.email]),
       password:new FormControl('',[Validators.minLength(4)]),      
-    }); 
-    
+    });     
   } 
   
   onFileComplete(data: any) {
@@ -49,8 +48,7 @@ export class updateUserComponent implements OnInit{
   }
 
   onSubmit()
-  {       
-    
+  {    
     if(this.FormUpdateUser.value.password)
     { 
       this._userSevice.update_password(this.identity._id,this.FormUpdateUser.value).subscribe(
@@ -86,7 +84,7 @@ export class updateUserComponent implements OnInit{
                   );
                 }
                 localStorage.setItem('identity',JSON.stringify(this.updateUser));                
-                document.getElementById("identity_name").innerHTML = ""+ this.updateUser.name;                  
+                
 
             },
             error=>{
@@ -145,8 +143,7 @@ export class updateUserComponent implements OnInit{
                         console.log(error);
                       }
                   );
-                }                  
-                document.getElementById("identity_name").innerHTML = "" + this.updateUser.name;                        
+                }                                  
             },
             error=>{
               Swal.fire({

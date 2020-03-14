@@ -23,6 +23,7 @@ import
   
 } from '@angular/material';
 import {MatProgressBarModule} from '@angular/material/progress-bar'; 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -56,7 +57,8 @@ const MaterialComponent = [
     MatTooltipModule,
     MatDialogModule,
     MatTableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSlideToggleModule
 ];
 
 @NgModule({  

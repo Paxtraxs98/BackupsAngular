@@ -1,21 +1,6 @@
 <div fxLayout="row" fxLayout.lt-sm="column" *ngIf="identity" style="background-color: rgb(238, 238, 238);height:89vh">     
     <div fxFlex>       
-        <div fxLayout="row wrap" fxLayoutAlign="space-evenly  center"  class="contenedor_form">
-            <div fxFlex="30" fxFlex.xs="90" class="img_perfil">
-                <mat-card class="" >                                       
-                    <mat-card-content style="padding: 20px;">
-                        <p style="float:right">
-                            <label for="img-upload">    
-                                <i class="material-icons" matTooltip="Editar imagen de perfil" style="font-size: 25px;cursor: pointer;">edit</i>
-                            </label>
-                        </p>
-                         <img mat-card-image src="{{url + 'imageUser/' + identity.imagen}}" alt="perfil" style="width: 170px; height: 170px;border-radius: 50%;" id="identity_image">
-                        <p class="name_user" id="identity_name">
-                            {{identity.name}}
-                        </p>
-                    </mat-card-content>                    
-                  </mat-card>                  
-            </div>
+        <div fxLayout="row wrap" fxLayoutAlign="space-evenly  center"  class="contenedor_form">            
             <div fxFlex="60" fxFlex.xs="90" class="form-edit">
                 <mat-card>
                     <mat-card-header>
@@ -56,7 +41,7 @@
                                       *Email Invalido
                                   </mat-hint>
                               </div>
-                              <div fxFlex>
+                              <div fxFlex *ngIf="identity.register=='musify'">
                                   <mat-form-field>              
                                       <mat-label>Password</mat-label>
                                       <input 
@@ -70,19 +55,34 @@
                                 </mat-hint>
                               </div>                      
                           </div>     
-                          <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" class="btn-upload">                                                        
-                            <div fxFlex fxLayoutAlign="center center">                                                        
+                          <div fxLayout="row wrap" fxLayout.sm="column" fxLayout.xs="column" class="btn-upload">                                                    
+                            <div fxFlex>                                                        
                                 <input type="file" id="img-upload" (change)="fileChangeEvent($event)">                            
-        
+                                <div fxLayout="row" fxLayoutAlign="center center" >
+                                    <div fxFlex>
+                                        <label for="img-upload">    
+                                            <!-- <i class="material-icons" matTooltip="Editar imagen de perfil" style="font-size: 25px;cursor: pointer;">edit</i> -->
+                                            Cambiar imagen de perfil
+                                        </label>
+                                    </div>
+                                </div>                                
+                                <div fxLayout="row" fxLayoutAlign="center center">
+                                    <div fxFlex>
+                                        <span *ngIf="filesToUpload">
+                                            Imagen Seleccioanda
+                                        </span>
+                                        <!-- <span *ngIf="!filesToUpload">
+                                            
+                                        </span> -->
+                                    </div>
+                                </div>
                             </div>                
                             <div fxFlex fxLayoutAlign="center end"  style="margin-top:20px">
                                 <button type="submit" [disabled]="FormUpdateUser.invalid" color="primary" mat-raised-button class="btn">Modificar</button>             
                              </div>   
                           </div>                                             
                         </form>   
-                    </mat-card-content>
-                    <mat-card-actions>
-                    </mat-card-actions>
+                    </mat-card-content>                    
                 </mat-card>      
             </div>   
         </div>

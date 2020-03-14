@@ -1,3 +1,9 @@
+.logueado{
+    background-image: url("../assets/imag/fondo_body3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 @media (max-width: 600px) {
     #menuMusify{
         display: none;
